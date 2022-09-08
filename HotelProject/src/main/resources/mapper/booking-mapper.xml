@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.mapper.BookingMapper">
+	<insert id="insertRoomBooking" parameterType="booking">
+		insert into roombooking values(#{roomNo}, #{email}, sysdate, to_date(#{checkIn}, 'mmddyyyy'), to_date(#{checkOut}, 'mmddyyyy'), 1, #{total})
+	</insert>
+	
+	<select id="selectWishlistView" parameterType="String" resultType="booking">
+		select r.roomno ,wl.wishlistno, r.roomtype, r.roomsimplemanual, r.price, ri.roomimagepath
+		from room r, wishlist wl, roomimage ri
+		where r.roomno = wl.roomno and r.roomno = ri.roomno and wl.email = #{email}
+	</select>
+	
+	<select id="selectBookingView" parameterType="String" resultType="booking">
+		select wl.roomno, r.roomtype, r.roomsimplemanual, r.roomdetailmanual, r.price, ri.roomimagepath 
+		from room r, wishlist wl, roomimage ri 
+		where r.roomno = wl.roomno and r.roomno = ri.roomno and wl.roomno = #{roomno}
+	</select>
+</mapper>
+
+
+
+
+
+
+
