@@ -4,74 +4,64 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("room")
 public class RoomDTO {
-	private String roomno;
-	private String hotelno;
-	private String roomtype;
-	private String roomsimplemanual;
-	private String roomdetailmanual;
-	private String roomimagepath;
+	private String roomNo;
+	private String hotelNo;
+	private String roomType;
+	private String roomManual;
+	private String roomEA;
+	private int roomOptionNo;
 	private int price;
 
 	public RoomDTO() {
 	}
-	
 
-	public String getRoomimagepath() {
-		return roomimagepath;
+	public String getRoomNo() {
+		return roomNo;
 	}
 
-
-	public void setRoomimagepath(String roomimagepath) {
-		this.roomimagepath = roomimagepath;
+	public void setRoomNo(String roomNo) {
+		this.roomNo = roomNo;
 	}
 
-
-
-	public String getRoomno() {
-		return roomno;
+	public String getHotelNo() {
+		return hotelNo;
 	}
 
-	public void setRoomno(String roomno) {
-		this.roomno = roomno;
+	public void setHotelNo(String hotelNo) {
+		this.hotelNo = hotelNo;
 	}
 
-	public String getHotelno() {
-		return hotelno;
+	public String getRoomType() {
+		return roomType;
 	}
 
-	public void setHotelno(String hotelno) {
-		this.hotelno = hotelno;
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
 	}
 
-	public String getRoomtype() {
-		return roomtype;
+	public String getRoomManual() {
+		return roomManual;
 	}
 
-	public void setRoomtype(String roomtype) {
-		this.roomtype = roomtype;
+	public void setRoomManual(String roomManual) {
+		this.roomManual = roomManual;
 	}
 
-	
-
-	public String getRoomsimplemanual() {
-		return roomsimplemanual;
+	public String getRoomEA() {
+		return roomEA;
 	}
 
-
-	public void setRoomsimplemanual(String roomsimplemanual) {
-		this.roomsimplemanual = roomsimplemanual;
+	public void setRoomEA(String roomEA) {
+		this.roomEA = roomEA;
 	}
 
-
-	public String getRoomdetailmanual() {
-		return roomdetailmanual;
+	public int getRoomOptionNo() {
+		return roomOptionNo;
 	}
 
-
-	public void setRoomdetailmanual(String roomdetailmanual) {
-		this.roomdetailmanual = roomdetailmanual;
+	public void setRoomOptionNo(int roomOptionNo) {
+		this.roomOptionNo = roomOptionNo;
 	}
-
 
 	public int getPrice() {
 		return price;
@@ -81,16 +71,10 @@ public class RoomDTO {
 		this.price = price;
 	}
 
-
 	@Override
 	public String toString() {
-		return "RoomDTO [roomno=" + roomno + ", hotelno=" + hotelno + ", roomtype=" + roomtype + ", roomsimplemanual="
-				+ roomsimplemanual + ", roomdetailmanual=" + roomdetailmanual + ", roomimagepath=" + roomimagepath
-				+ ", price=" + price + "]";
+		return "RoomDTO [roomNo=" + roomNo + ", hotelNo=" + hotelNo + ", roomType=" + roomType + ", roomManual="
+				+ roomManual + ", roomEA=" + roomEA + ", roomOptionNo=" + roomOptionNo + ", price=" + price + "]";
 	}
-
 	
-
-
-
 }

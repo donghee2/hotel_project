@@ -9,10 +9,37 @@ public class HotelDTO {
 	private String hotelTel;
 	private String hotelAddress;
 	private String hotelImage;
-	private String hotelSimpleMenual;
-	private String hotelDetailMenual;
+	private String hotelSimpleManual;
+	private String hotelDetailManual;
+	private int hotelAllRoomEA;
 
 	public HotelDTO() {
+	}
+	
+	
+	public HotelDTO(String hotelNo, String hotelName, String hotelTel, String hotelAddress, String hotelImage,
+			String hotelSimpleManual, String hotelDetailManual) {
+		super();
+		this.hotelNo = hotelNo;
+		this.hotelName = hotelName;
+		this.hotelTel = hotelTel;
+		this.hotelAddress = hotelAddress;
+		this.hotelImage = hotelImage;
+		this.hotelSimpleManual = hotelSimpleManual;
+		this.hotelDetailManual = hotelDetailManual;
+	}
+	
+	public HotelDTO(String hotelNo, String hotelName, String hotelTel, String hotelAddress, String hotelImage,
+			String hotelSimpleManual, String hotelDetailManual, int hotelAllRoomEA) {
+		super();
+		this.hotelNo = hotelNo;
+		this.hotelName = hotelName;
+		this.hotelTel = hotelTel;
+		this.hotelAddress = hotelAddress;
+		this.hotelImage = hotelImage;
+		this.hotelSimpleManual = hotelSimpleManual;
+		this.hotelDetailManual = hotelDetailManual;
+		this.hotelAllRoomEA = hotelAllRoomEA;
 	}
 
 	public String getHotelNo() {
@@ -55,29 +82,36 @@ public class HotelDTO {
 		this.hotelImage = hotelImage;
 	}
 
-	public String getHotelSimpleMenual() {
-		return hotelSimpleMenual;
+	public String getHotelSimpleManual() {
+		return hotelSimpleManual;
 	}
 
-	public void setHotelSimpleMenual(String hotelSimpleMenual) {
-		this.hotelSimpleMenual = hotelSimpleMenual;
+	public void setHotelSimpleManual(String hotelSimpleManual) {
+		this.hotelSimpleManual = hotelSimpleManual;
 	}
 
-	public String getHotelDetailMenual() {
-		return hotelDetailMenual;
+	public String getHotelDetailManual() {
+		return hotelDetailManual;
 	}
 
-	public void setHotelDetailMenual(String hotelDetailMenual) {
-		this.hotelDetailMenual = hotelDetailMenual;
+	public void setHotelDetailManual(String hotelDetailManual) {
+		this.hotelDetailManual = hotelDetailManual;
+	}
+
+	public int getHotelAllRoomEA() {
+		return hotelAllRoomEA;
+	}
+
+	public void setHotelAllRoomEA(int hotelAllRoomEA) {
+		this.hotelAllRoomEA = hotelAllRoomEA;
 	}
 
 	@Override
 	public String toString() {
 		return "HotelDTO [hotelNo=" + hotelNo + ", hotelName=" + hotelName + ", hotelTel=" + hotelTel
-				+ ", hotelAddress=" + hotelAddress + ", hotelImage=" + hotelImage + ", hotelSimpleMenual="
-				+ hotelSimpleMenual + ", hotelDetailMenual=" + hotelDetailMenual + "]";
+				+ ", hotelAddress=" + hotelAddress + ", hotelImage=" + hotelImage + ", hotelSimpleManual="
+				+ hotelSimpleManual + ", hotelDetailManual=" + hotelDetailManual + ", hotelAllRoomEA=" + hotelAllRoomEA
+				+ "]";
 	}
-	
-	
-	
+
 }
