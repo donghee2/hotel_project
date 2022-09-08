@@ -103,7 +103,7 @@
 		%>
 				<script>
 					alert("로그인을 하셔야 이용할수 있습니다.");
-					location.href="/";
+					location.href="/login";
 				</script>
 		<%
 		} 
