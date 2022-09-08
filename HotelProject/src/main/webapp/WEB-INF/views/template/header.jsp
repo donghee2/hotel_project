@@ -30,20 +30,23 @@
 								<div class="menu">
 									<nav id="main-menu" class="main-menu">
 										<ul>
-											<li class="active"><a href="index.html">객실</a>
+											<li class="active"><a href="index.html">호텔소개</a>
 											<ul>
-													<li><a href="index.html">실시간 예약하기</a></li>
-													<li><a href="index-2.html">객실 예약현황</a></li>
-													<li><a href="index-3.html">객실정보</a></li>
+													<li><a href="index.html">호텔지점소개</a></li>
+													<li><a href="index-2.html">객실정보</a></li>
 												</ul></li>
 											<li><a href="#">다이닝</a>
 											<ul>
 													<li><a href="about.html">조식 예약하기</a></li>
 													<li><a href="event.html">레스토랑 예약하기</a></li>
 											</ul></li>
-											<li><a href="room.html">예약하기</a></li>
+											<li><a href="room.html">예약하기</a>
+											<ul>
+													<li><a href="index.html">실시간 예약하기</a></li>
+													<li><a href="index-2.html">객실 예약현황</a></li>
+												</ul></li>
 											<li><a href="wishlist.do">위시리스트</a></li>
-											<li><a href="#">오시는길</a></li>
+											<li><a href="#">고객센터</a></li>
 										</ul>
 									</nav>
 								</div>
