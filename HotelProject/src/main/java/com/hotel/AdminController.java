@@ -77,7 +77,7 @@ public class AdminController {
 		
 		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
 
-		File userRoot = new File("C:\\Hotel\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\");
+		File userRoot = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\");
 		String encoding = "utf-8";
 		
 		if(!userRoot.exists())
@@ -88,7 +88,7 @@ public class AdminController {
 		for(MultipartFile f : filelist) {
 			String originalFileName = f.getOriginalFilename();
 			if(f.getSize() == 0) continue;
-			File uploadFile = new File("C:\\Hotel\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\" + "\\" +originalFileName);
+			File uploadFile = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\" + "\\" +originalFileName);
 			System.out.println(originalFileName);
 			dto.setHotelImage(dto.getHotelImage()+ originalFileName);
 			i++;
@@ -148,7 +148,7 @@ public class AdminController {
 
 		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
 
-		File userRoot = new File("C:\\Hotel\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\");
+		File userRoot = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\");
 		String encoding = "utf-8";
 		
 		if(!userRoot.exists())
@@ -159,7 +159,7 @@ public class AdminController {
 		for(MultipartFile f : filelist) {
 			String originalFileName = f.getOriginalFilename();
 			if(f.getSize() == 0) continue;
-			File uploadFile = new File("C:\\Hotel\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\" + "\\" +originalFileName);
+			File uploadFile = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\" + "\\" +originalFileName);
 			System.out.println(originalFileName);
 			dto.setHotelImage(dto.getHotelImage()+ originalFileName);
 			i++;
@@ -190,7 +190,7 @@ public class AdminController {
 		return "redirect:/selectAllHotel.do";
 	}
 	
-	@RequestMapping("/hotelUpdate.do")
+	@RequestMapping("/deleteHotel.do")
 	public String deleteHotel(String hotelNo, Model model) {
 		
 		return "redirect:/selectAllHotel.do";
