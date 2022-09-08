@@ -2,9 +2,12 @@ package com.hotel;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -42,7 +45,7 @@ public class AdminController {
 		
 		// 정보확인
 		for(int i=0;i<list.size();i++) {
-			System.out.println(list.get(i).toString());
+//			System.out.println(list.get(i).toString());
 			String tel = list.get(i).getHotelTel();
 			if(tel.length() == 8){
 				list.get(i).setHotelTel(tel.replaceFirst("^([0-9]{4})([0-9]{4})$", "$1-$2"));
@@ -73,7 +76,7 @@ public class AdminController {
 	@RequestMapping("/insertHotel.do")
 	public String insertHotel(HotelDTO dto, String addr1, String addr2, String addr3,
 			Model model, MultipartHttpServletRequest request
-			) throws UnsupportedEncodingException{
+			) throws IOException{
 		
 		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
 
@@ -108,31 +111,35 @@ public class AdminController {
 		dto.setHotelTel(dto.getHotelTel().replaceAll("-", ""));
 		dto.setHotelAddress(hotelAddress);
 			
-		System.out.println(dto.toString());
+//		System.out.println(dto.toString());
 			
-		int result = hotelservice.insertHotel(dto);
+		int result = 0;
+		System.out.println(result+"llll");
+		result = hotelservice.insertHotel(dto);
+		System.out.println(result);
+		
 		
 		model.addAttribute("title", "전체 지점 관리");
 		model.addAttribute("page", "allHotelView.jsp");
+		model.addAttribute("result", result);
 		
-
-		return "redirect:/selectAllHotel.do";
+		return "es/admin_main";
 	}
 	
 	
 	@RequestMapping("/hotelUpdateView.do")
 	public String updateHotelView(String hotelNo, Model model) {
 		
-		System.out.println("updateHotelView : " + hotelNo);
+//		System.out.println("updateHotelView : " + hotelNo);
 		
 		HotelDTO dto = hotelservice.selectOneHotel(hotelNo);
 		
 		String address[] = dto.getHotelAddress().split("/");
-		System.out.println(address[0]);
-		System.out.println(address[1]);
-		System.out.println(address[2]);
+//		System.out.println(address[0]);
+//		System.out.println(address[1]);
+//		System.out.println(address[2]);
 		
-		System.out.println("hotle Update View : " + dto.toString());
+//		System.out.println("hotle Update View : " + dto.toString());
 		
 		model.addAttribute("title", "전체 지점 관리");
 		model.addAttribute("page", "updateHotelView.jsp");
@@ -144,7 +151,7 @@ public class AdminController {
 	
 	@RequestMapping("/hotelUpdate.do")
 	public String updateHotel(HotelDTO dto, String addr1, String addr2, String addr3,
-			Model model, MultipartHttpServletRequest request) {
+			Model model, MultipartHttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
 
@@ -160,7 +167,7 @@ public class AdminController {
 			String originalFileName = f.getOriginalFilename();
 			if(f.getSize() == 0) continue;
 			File uploadFile = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\" + "\\" +originalFileName);
-			System.out.println(originalFileName);
+//			System.out.println(originalFileName);
 			dto.setHotelImage(dto.getHotelImage()+ originalFileName);
 			i++;
 			try {
@@ -179,9 +186,16 @@ public class AdminController {
 		dto.setHotelAddress(hotelAddress);
 		dto.setHotelTel(dto.getHotelTel().replaceAll("-", ""));
 		
-		System.out.println(dto.toString());
+//		System.out.println(dto.toString());
 			
 		int result = hotelservice.updateHotel(dto);
+		System.out.println(result);
+		if(result==1) {
+			PrintWriter pw = response.getWriter();
+			pw.println("<script>alert('호텔 정보가 정상적으로 수정되었습니다.'); </script>");
+			pw.flush();
+		}
+		
 		
 		model.addAttribute("title", "전체 지점 관리");
 		model.addAttribute("page", "allHotelView.jsp");

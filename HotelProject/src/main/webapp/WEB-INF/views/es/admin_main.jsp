@@ -207,6 +207,8 @@
 		        e.preventDefault();
 		        alert('호텔 상세 소개문을 입력하세요');
 		    }
+		    console.log(${result});
+		    
 		});
 		
 	});
