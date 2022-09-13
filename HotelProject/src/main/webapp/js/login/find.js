@@ -17,6 +17,7 @@ $(function() {
 });
 
 function find_id() {
+	
 }
 
 function find_pw() {

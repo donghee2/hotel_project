@@ -1,5 +1,8 @@
 package com.hotel.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +24,13 @@ public class MemberService {
 	
 	public MemberDTO matchMember(LoginRequest loginRequest) {
 		return memberMapper.matchMember(loginRequest.getEmail(), loginRequest.getPassword());
+	}
+
+	public List<MemberDTO> selectMemberId(String memberName, String tel) {
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("memberName", memberName);
+		map.put("tel", tel);
+		System.out.println("service" + map);
+		return memberMapper.selectMemberId(map);
 	}
 }

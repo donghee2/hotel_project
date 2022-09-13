@@ -10,57 +10,7 @@
 </head>
 <body>	
 	<!-- Booking Section End -->
-	<div class="booking-sec">
-		<div class="container">
-			<div class="row">
-				<form action="#">
-					<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-						<div class="single-field calendar-icon">
-							<input type="text" name="checkin" id="arrival-date" size="30"
-								placeholder="Check In" class="calendar-icon">
-						</div>
-					</div>
-					<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-						<div class="single-field calendar-icon">
-							<input type="text" name="checkout" id="outgoing-date" size="30"
-								placeholder="Check Out">
-						</div>
-					</div>
-					<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-						<div class="single-field calendar-icon">
-							<div class="select-arrow">
-								<select>
-								<c:forEach var="room" items="${requestScope.mainlist }">
-									<option value="${room.roomtype }">${room.roomtype }</option>
-								</c:forEach>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-						<div class="single-field calendar-icon">
-							<div class="select-arrow">
-								<select>
-									<option value="2">2인</option>
-									<option value="3">3인</option>
-									<option value="4">4인</option>
-									<option value="5">5인</option>
-									<option value="6">6인</option>
-									<option value="7">7인</option>
-									<option value="8">8인</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-						<div class="single-field">
-							<input type="submit" value="Book Availability" />
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	
 	<!-- Booking Section End -->
 	<!-- Room List Section Start -->
 	<div class="room-list-sec bg-gray pt-100 pb-70">

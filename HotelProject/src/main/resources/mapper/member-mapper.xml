@@ -12,6 +12,11 @@
 		select email, pass as password, membername, birth, gender, membertel, memberaddress from member
 		where email = #{email} and pass = #{password}
 	</select>
+	
+	<select id="selectMemberId" parameterType="map" resultType="member">
+		select email, pass as password, membername, birth, gender, membertel, memberaddress from 
+		member where membername = #{memberName} and membertel = #{tel}
+	</select>
 </mapper>
 
 

@@ -26,4 +26,9 @@ public class MainController {
 		model.addAttribute("mainlist", mainlist);
 		return "index";
 	}
+	
+	@RequestMapping("/hotelDetailView.do")
+	public String hotelDetailView() {
+		return "hotel_detail_view";
+	}
 }

@@ -9,6 +9,8 @@
 			<button class="mypage_btn" id="inquiry_write_btn">1:1 문의하기</button>
 			<button class="mypage_btn" id="inquiry_btn">1:1 문의내역</button>
 			<button class="mypage_btn" id="review_btn">리뷰내역</button>
+			<button class="mypage_btn" id="find-id_btn">아이디찾기</button>
+			<button class="mypage_btn" id="find-pass_btn">비밀번호찾기</button>
 		</div>
 	</div>
 </div>
@@ -29,6 +31,16 @@
 		
 		$(document).on('click', '#review_btn', function(e) {
 			alert('리뷰내역');
+		});
+		
+		$(document).on('click', '#find-id_btn', function(e) {
+			location.replace("find-id-view");
+			alert('아이디찾기');
+		});
+		
+		$(document).on('click', '#find-pass_btn', function(e) {
+			location.replace("find-pass-view");
+			alert('비밀번호찾기');
 		});
 	});
 </script>
