@@ -28,8 +28,11 @@ public class HotelService {
 	}
 
 	public int updateHotel(HotelDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return hotelmapper.updateHotel(dto);
+	}
+
+	public int deleteHotel(String hotelNo) {
+		return hotelmapper.deleteHotel(hotelNo);
 	}
 	
 	

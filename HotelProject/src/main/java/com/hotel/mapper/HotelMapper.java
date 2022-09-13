@@ -14,5 +14,10 @@ public interface HotelMapper {
 	int insertHotel(HotelDTO dto);
 
 	HotelDTO selectOneHotel(String hotelNo);
+	
+	int updateHotel(HotelDTO dto);
+
+	int deleteHotel(String hotelNo);
+
 
 }

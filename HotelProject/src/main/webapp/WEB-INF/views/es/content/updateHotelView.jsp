@@ -26,7 +26,7 @@
 			</section>
 			<!-- Main content -->
 			<section class="content">
-			<form class="hotelfrm" action="insertHotel.do" method="post" enctype="multipart/form-data">
+			<form class="hotelfrm" action="updateHotel.do" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<!-- /.col -->
 					<div class="col-xl-8 col-lg-7">

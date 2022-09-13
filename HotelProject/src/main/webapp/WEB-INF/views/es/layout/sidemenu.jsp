@@ -47,9 +47,6 @@
 					<ul class="treeview-menu">
 							<li><a href="selectAllHotel.do">전체 지점 관리</a></li>
 							<li><a href="insertHotelView.do">호텔 지점 등록</a></li>
-							<li><a href="hotelUpdateView.do">test</a></li>
-							<li><a href="pages/reports/crypto-stats.html">Crypto
-									Stats</a></li>
 						</ul></li>
 					<li class="treeview"><a href="#"><i class="icon-compass"></i><span>객실 관리</span><span class="pull-right-container"><i
 								class="fa fa-angle-right pull-right"></i></span></a>
@@ -63,13 +60,13 @@
 									Filters</a></li>
 						</ul></li>
 					
-										<li class="header nav-small-cap">EXTRA COMPONENTS</li>
-					<li class="treeview"><a href="#"><i class="icon-map"></i><span>Map</span><span
+										<li class="header nav-small-cap">MEMBER</li>
+					<li class="treeview"><a href="#"><i class="icon-map"></i><span>회원 관리</span><span
 							class="pull-right-container"><i
 								class="fa fa-angle-right pull-right"></i></span></a>
 					<ul class="treeview-menu">
-							<li><a href="pages/map/map-google.html">Google Map</a></li>
-							<li><a href="pages/map/map-vector.html">Vector Map</a></li>
+							<li><a href="selectAllMember.do">전체 회원 관리</a></li>
+							<li><a href="#profile">회원 프로필</a></li>
 						</ul></li>
 					<li class="treeview"><a href="#"><i class="icon-magnet"></i><span>Extension</span><span
 							class="pull-right-container"><i

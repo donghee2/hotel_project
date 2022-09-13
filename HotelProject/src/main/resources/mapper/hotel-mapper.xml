@@ -17,6 +17,17 @@
 		select * from hotel where hotelno = #{hotleNo}
 	</select>
 	
+	<update id="updateHotel" parameterType="hotel">
+		update hotel set hotelno = #{hotelNo}, hotelname = #{hotelName}, hoteltel = #{hotelTel},
+		hoteladdress = #{hotelAddress}, hotelimage = #{hotelImage},
+		hotelsimplemanual = #{hotelSimpleManual}, hoteldetailmanual = #{hotelDetailManual}
+		where hotelno = #{hotelNo}
+	</update>
+	
+	<delete id="deleteHotel" parameterType="String">
+		delete from hotel where hotelno = #{hotleNo}
+	</delete>
+	
 	
 </mapper>
 

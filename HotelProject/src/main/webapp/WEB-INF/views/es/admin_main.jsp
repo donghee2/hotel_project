@@ -127,6 +127,16 @@
 			$("a[href^='insertHotelView.do']").parent().parent().parent().addClass("active");
 		}
 		
+		else if(title == "전체 회원 관리"){
+			$("a[href^='selectAllMember.do']").parent().addClass("active");
+			$("a[href^='selectAllMember.do']").parent().parent().parent().addClass("active");
+		}
+		
+		else if(title == "회원 프로필"){
+			$("a[href^='selectAllMember.do']").parent().addClass("active");
+			$("a[href^='selectAllMember.do']").parent().parent().parent().addClass("active");
+		}
+		
 		/* 
 		$(".htl").text($(".htl").text().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
 		 */

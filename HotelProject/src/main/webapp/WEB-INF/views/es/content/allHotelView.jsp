@@ -63,9 +63,9 @@
 												<td class="text-center">${h.hotelDetailManual}</td>
 												<td class="text-center">0</td>
 												<td class="text-center">
-													<a href="hotelUpdateView.do?hotelNo=${h.hotelNo }"
+													<a href="updateHotelView.do?hotelNo=${h.hotelNo }"
 													class="btn btn-warning btn-sm mx-auto">수정하기</a>
-													<a href="hotelDelete.do?hotelNo=${h.hotelNo }"
+													<a href="deleteHotel.do?hotelNo=${h.hotelNo }"
 													class="btn btn-warning btn-sm mx-auto">삭제하기</a>
 													</td>
 											</tr>
