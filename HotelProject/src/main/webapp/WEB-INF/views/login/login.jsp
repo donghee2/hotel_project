@@ -9,7 +9,7 @@
 			<div><input id="password" type="password" placeholder="비밀번호" /></div>
 		</div>
 		<div class="link_wrap">
-			<a href="/find-id-view">아이디(이메일) 찾기</a> <span>|</span> <a href="/find-pw-view">비밀번호 찾기</a>
+			<a href="/find-id-view">아이디(이메일) 찾기</a> <span>|</span> <a href="/find-pass-view">비밀번호 찾기</a>
 		</div>
 		<div class="btn_area">
 			<button id="login_btn">로그인</button>

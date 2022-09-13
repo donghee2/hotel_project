@@ -17,6 +17,15 @@
 		select email, pass as password, membername, birth, gender, membertel, memberaddress from 
 		member where membername = #{memberName} and membertel = #{tel}
 	</select>
+	
+	<select id="selectMemberPass" parameterType="map" resultType="member">
+		select email, pass as password, membername, birth, gender, membertel, memberaddress from 
+		member where email = #{email} and membername = #{memberName} and membertel = #{tel}
+	</select>
+	
+	<update id="updatePasswd" parameterType="map">
+		update member set pass = #{password} where email = #{email}
+	</update>
 </mapper>
 
 

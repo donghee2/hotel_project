@@ -11,6 +11,7 @@
 			<button class="mypage_btn" id="review_btn">리뷰내역</button>
 			<button class="mypage_btn" id="find-id_btn">아이디찾기</button>
 			<button class="mypage_btn" id="find-pass_btn">비밀번호찾기</button>
+			<button class="mypage_btn" id="updateMeber_btn">회원정보수정</button>
 		</div>
 	</div>
 </div>
@@ -41,6 +42,11 @@
 		$(document).on('click', '#find-pass_btn', function(e) {
 			location.replace("find-pass-view");
 			alert('비밀번호찾기');
+		});
+		
+		$(document).on('click', '#updateMember_btn', function(e) {
+			location.replace("updateMember-view");
+			alert('회원정보수정');
 		});
 	});
 </script>

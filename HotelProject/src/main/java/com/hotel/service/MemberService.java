@@ -33,4 +33,19 @@ public class MemberService {
 		System.out.println("service" + map);
 		return memberMapper.selectMemberId(map);
 	}
+
+	public List<MemberDTO> selectMemberPass(String email, String memberName, String tel) {
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("email", email);
+		map.put("memberName", memberName);
+		map.put("tel", tel);
+		return memberMapper.selectMemberPass(map);
+	}
+
+	public int updatePasswd(String email, String password) {
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("email", email);
+		map.put("password", password);
+		return memberMapper.updatePasswd(map);
+	}
 }
