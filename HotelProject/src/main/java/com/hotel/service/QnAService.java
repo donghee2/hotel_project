@@ -29,4 +29,15 @@ public class QnAService {
 	public int QnaCount(String email) {
 		return qnamapper.qnaCount(email);
 	}
+
+	public int updateQnaResponse(String qnano, String response) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("qnano", qnano);
+		map.put("response", response);
+		return qnamapper.updateQnaResponse(map);
+	}
+
+	public int deleteQnaResponse(String qnano) {
+		return qnamapper.deleteQnaResponse(qnano);
+	}
 }

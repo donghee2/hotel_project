@@ -13,6 +13,14 @@
 		select count(*) from qna where email = #{email}
 	</select>
 	
+	<update id="updateQnaResponse" parameterType="map">
+		update qna set qnaresponse = #{response} where qnano = #{qnano}
+	</update>
+	
+	<update id="deleteQnaResponse" parameterType="String">
+		update qna set qnaresponse = NULL where qnano = #{qnano}
+	</update>
+	
 </mapper>
 
 

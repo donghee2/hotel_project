@@ -223,9 +223,14 @@ public class AdminController {
 		if(email == null) 
 			email = "test00";
 		MemberDTO member = memberservice.selectMember(email);
+		String date = member.getBirth();
+		member.setBirth(date.substring(0, 8));
+		
+		System.out.println(member.toString());
 		List<QnADTO> qna = qnaservice.selectQna(email, pageNo);
 		int count = qnaservice.QnaCount(email);
 		PaggingVO vo = new PaggingVO(count, pageNo, 5 ,5);
+		
 		model.addAttribute("pagging", vo);
 		model.addAttribute("dto", member);
 		model.addAttribute("qna", qna);
@@ -234,17 +239,33 @@ public class AdminController {
 		return "es/admin_main";
 	}
 	
+	@RequestMapping("/updateQnaResponse.do")
+	public String updateQnaResponse(String qnano, String response, String email) {
+		System.out.println("qna : " + qnano + ", " + "response : " + response);		
+		int result = qnaservice.updateQnaResponse(qnano, response);
+		
+		return "redirect:/memberProfile.do?email="+email;
+	}
+	
+	@RequestMapping("/deleteQnaResponse.do")
+	public String deleteQnaResponse(String qnano, String email) {
+		int result = qnaservice.deleteQnaResponse(qnano);
+		
+		return "redirect:/memberProfile.do?email="+email;
+	}
+	
 	@RequestMapping("/memberUpdate.do")
 	public void memberUpdate(MemberDTO dto, HttpServletResponse response, HttpServletRequest request) 
 			throws IOException {
-		int result = memberservice.updateMember(dto);
-		String email = request.getParameter("email");
-		if(result == 1)
-			response.getWriter().write(
-					"<stript>alert('수정이 완료되었습니다.');location.href='memberProfile.do?email='"+email+";</stript>");
-		else
-			response.getWriter().write(
-					"<stript>alert('수정에 실패하였습니다.');</stript>");
+		System.out.println(dto.toString());
+//		
+//		int result = memberservice.updateMember(dto);
+//		if(result == 1)
+//			response.getWriter().write(
+//					"<stript>alert('수정이 완료되었습니다.');location.href='memberProfile.do?email='"+dto.getEmail()+";</stript>");
+//		else
+//			response.getWriter().write(
+//					"<stript>alert('수정에 실패하였습니다.');</stript>");
 	}
 	
 	@RequestMapping("/memberDelete.do")

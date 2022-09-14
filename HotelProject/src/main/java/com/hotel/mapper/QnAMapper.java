@@ -15,6 +15,10 @@ public interface QnAMapper {
 	List<QnADTO> selectQna(Map<String, Object> map);
 	
 	int qnaCount(String email);
+
+	int updateQnaResponse(Map<String, Object> map);
+
+	int deleteQnaResponse(String qnano);
 	
 
 

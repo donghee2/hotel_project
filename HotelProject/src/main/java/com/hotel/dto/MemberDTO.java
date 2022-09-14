@@ -1,6 +1,5 @@
 package com.hotel.dto;
 
-import java.time.LocalDate;
 
 import org.apache.ibatis.type.Alias;
 @Alias("member")
@@ -8,7 +7,7 @@ public class MemberDTO {
 	private String email;
 	private String password;
 	private String memberName;
-	private LocalDate birth;
+	private String birth;
 	private String gender;
 	private String tel;
 	private String address;
@@ -16,7 +15,7 @@ public class MemberDTO {
 	public MemberDTO() {
 	}
 	
-	public MemberDTO(String email, String password, String memberName, LocalDate birth, String gender, String tel,
+	public MemberDTO(String email, String password, String memberName, String birth, String gender, String tel,
 			String address) {
 		super();
 		this.email = email;
@@ -45,10 +44,10 @@ public class MemberDTO {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
-	public LocalDate getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(LocalDate birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	public String getGender() {

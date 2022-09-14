@@ -66,7 +66,6 @@
 								class="fa fa-angle-right pull-right"></i></span></a>
 					<ul class="treeview-menu">
 							<li><a href="selectAllMember.do">전체 회원 관리</a></li>
-							<li><a href="#profile">회원 프로필</a></li>
 						</ul></li>
 					<li class="treeview"><a href="#"><i class="icon-magnet"></i><span>Extension</span><span
 							class="pull-right-container"><i

@@ -70,10 +70,10 @@
 			<!-- /.col -->
 			<div class="col-lg-9 col-12">
 				<div class="nav-tabs-custom">
-					<ul class="nav nav-tabs">
-						<li><a class="active" href="#activity" data-toggle="tab">문의
+					<ul class="nav nav-tabs tabstyle">
+						<li><a class="active" href="#activity" data-toggle="tab">1:1 문의
 								내역</a></li>
-						<li><a href="#settings" data-toggle="tab">정보 수정</a></li>
+						<li><a href="#settings" data-toggle="tab">회원 정보 수정</a></li>
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane" id="timeline">
@@ -84,44 +84,75 @@
 						<div class="active tab-pane" id="activity">
 							<!-- Post -->
 							<c:forEach var="qna" items="${requestScope.qna }">
+							<div class="top-line">
+							<c:if test="${qna.qnaresponse == null }">
+								<p class="text-sm text-orange">
+								<i class="fa fa-comments-o margin-r-5"></i>
+								답변 대기 중</p>
+							</c:if>
+							<c:if test="${qna.qnaresponse != null }">
+								<p class="text-sm text-success">
+								<i class="fa fa-comments-o margin-r-5"></i>
+									답변 완료</p>
+							</c:if>
+							</div>
 							<div class="post">
-								<div class="user-block">
-									<span class="username"><a href="#">${dto.memberName }</a><a
-										href="#" class="pull-right btn-box-tool"><i
-											class="fa fa-times"></i></a></span><span class="description">${qna.qnadate }</span>
+								<div class="activitytimeline">
+									<p class="text-yellow hover-warning">문의자</p>
+									<p class="tsize">${dto.memberName }<p>
+									<p class="text-yellow hover-warning">문의일</p>
+									<p class="tsize">${qna.qnadate }<p>
 								</div>
 								<!-- /.user-block -->
 								<div class="activitytimeline">
-									<p>문의내용</p>
-									<p>${qna.qnacontent }</p>
+									<p class="text-yellow hover-warning">문의내용</p>
+									<p class="tsize">${qna.qnacontent }</p>
 									<hr>
 									<c:if test="${qna.qnaresponse != null }">
-									<p>답변내용</p>
-									<p>${qna.qnaresponse }</p>
+									<p class="text-yellow hover-warning">답변내용</p>
+									<p class="tsize">${qna.qnaresponse }</p>
 									<hr>
 									</c:if>
 									<ul class="list-inline">
 										<li></li>
-										<li class="pull-right">
-										<c:if test="${qna.qnaresponse == null }">
-										<a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-										답변대기중</a></li>
-										</c:if>
+										
 										<c:if test="${qna.qnaresponse != null }">
-										<a href="#"
-											class="link-black text-sm"><i
-												class="fa fa-comments-o margin-r-5"></i>답변완료</a></li>
+										<li class="pull-right">
+											<button id="delete-btn" type="button" class="btn btn-warning btn-md" style="margin-left: 10px;">
+											답변 삭제</button></li>
+										<li class="pull-right">
+											<button id="update-btn" type="button" class="btn btn-warning btn-md" style="margin-left: 10px;">
+											답변 수정</button></li>
 										</c:if>
 									</ul>
-									<form class="form-horizontal form-element">
+									<c:if test="${qna.qnaresponse == null }">
+									<form action="updateQnaResponse.do" class="form-horizontal form-element">
 										<div class="form-group row no-gutters">
 											<div class="col-sm-9">
-												<input class="form-control input-sm" placeholder="답변을 입력하세요" />
+												<input name="response" class="form-control input-sm" placeholder="답변을 입력하세요" style="padding-left: 10px;" />
+												<input name="qnano" type="hidden" value="${qna.qnano }">
+												<input name="email" type="hidden" value="${qna.email }">
 											</div>
 											<div class="col-sm-3">
 												<button type="submit"
-													class="btn btn-danger pull-right btn-block btn-sm">
+													class="btn btn-warning btn-lg" style="margin-left: 10px;">
 													등록</button>
+											</div>
+										</div>
+									</form>
+									</c:if>
+									<form id="updatefrm" action="updateQnaResponse.do" class="form-horizontal form-element disnone" >
+									<br>
+										<div class="form-group row no-gutters">
+											<div class="col-sm-9">
+												<input name="response" class="form-control input-sm" placeholder="수정할 답변을 입력하세요" style="padding-left: 10px;" />
+												<input name="qnano" type="hidden" value="${qna.qnano }">
+												<input name="email" type="hidden" value="${qna.email }">
+											</div>
+											<div class="col-sm-3">
+												<button type="submit"
+													class="btn btn-warning btn-lg" style="margin-left: 10px;">
+													수정하기</button>
 											</div>
 										</div>
 									</form>
@@ -150,75 +181,51 @@
 						</div>
 						<!-- /.tab-pane -->
 						<div class="tab-pane" id="settings">
-							<table width="600px" name="frm" align="center">
-								<tr>
-									<td align="center">
-
-										<table width="100%" class="table">
-											<tr align="center">
-												<td><b>회원정보 수정</b></td>
-											</tr>
-										</table>
-
-										<form action="memberUpdate.do" method="post">
-											<table class="table2" width="100%">
-												<tr>
-													<td width="35%">이메일</td>
-													<input type="hidden" value="${dto.email }" name="email">
-													<td width="65%">${dto.email }</td>
-												</tr>
-												<tr>
-													<td>비밀번호</td>
-													<td><input type="password" name="password" size="40"
-														required value="${dto.password }"/></td>
-												</tr>
-
-												<!-- 		-----로그인정보-----		 -->
-
-												<tr>
-													<td width="35%">이름</td>
-													<td width="65%"><input type="text" name="memberName"
-														size="40" value="${dto.memberName }" required /></td>
-												</tr>
-												<tr>
-													<td>생년월일</td>
-													<td><input type="date" name="birth" size="40"
-														value="${dto.birth}" required /></td>
-												</tr>
-												<tr>
-													<td>성별</td>
-													<td>
-													<c:if test="${dto.gender == 'F' }">
-													<input type="text" name="gender" size="40"
-														value="여성" />
-													</c:if>
-													<c:if test="${dto.gender == 'M' }">
-													<input type="text" name="gender" size="40"
-														value="남성" />
-													</c:if>
-													</td>
-												</tr>
-												<tr>
-													<td>전화번호</td>
-													<td><input type="text" name="tel" size="40"
-														value="${dto.tel }" /></td>
-												</tr>
-												<tr>
-													<td>주소</td>
-													<td><input type="text" name="address" size="40"
-														value="${dto.address }" /></td>
-												</tr>
-											</table>
-											<table>
-												<tr>
-													<td colspan="2" align="center"><input class="button"
-														type="submit" value="회원정보 수정" />
-														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="button"
-														type="reset" value="다시쓰기" /></td>
-												</tr>
-											</table>
-										</form>
-							</table>
+						<form action="memberUpdate.do" method="post">
+							<div class="box-body">
+				                <div class="row">
+				                  <div class="col-12">
+				                    <div class="form-group row"><label class="col-sm-2 col-form-label">이메일</label>
+				                      <div class="col-sm-5"><input class="form-control" readonly="readonly" type="text" value="${dto.email }" name="email" placeholder="이메일"></div>
+				                    </div>
+				                    <div class="form-group row"><label class="col-sm-2 col-form-label">비밀번호</label>
+				                      <div class="col-sm-5"><input class="form-control" type="password" value="${dto.password }" name="password" placeholder="비밀번호"></div>
+				                    </div>
+				                    <div class="form-group row"><label class="col-sm-2 col-form-label">이름</label>
+				                      <div class="col-sm-5"><input class="form-control" type="text" value="${dto.memberName }" name="memberName" placeholder="이름"></div>
+				                    </div>
+				                    <div class="form-group row"><label class="col-sm-2 col-form-label">생일</label>
+				                      <div class="col-sm-5"><input class="form-control" type="date" value="${dto.birth }" name="birth" placeholder="이메일"></div>
+				                    </div>
+				                    <c:if test="${dto.gender == 'F' }">
+				                    	<div class="form-group row"><label class="col-sm-2 col-form-label">성별</label>
+				                      	<div class="col-sm-5"><input class="form-control" type="text" value="여성" name="gender" placeholder="성별"></div>
+				                    </div>
+				                    </c:if>
+				                    <c:if test="${dto.gender == 'M' }">
+				                    	<div class="form-group row"><label class="col-sm-2 col-form-label">성별</label>
+				                      	<div class="col-sm-5"><input class="form-control" type="text" value="남성" name="gender" placeholder="성별"></div>
+				                    </div>
+				                    </c:if>
+				                    <div class="form-group row"><label class="col-sm-2 col-form-label">전화번호</label>
+				                      <div class="col-sm-5"><input class="form-control" type="text" value="${dto.tel }" name="tel" placeholder="전화번호"></div>
+				                    </div>
+				                    <div class="form-group row"><label class="col-sm-2 col-form-label">주소</label>
+				                      <div class="col-sm-5"><input class="form-control" type="text" value="${dto.address }" name="address" placeholder="주소"></div>
+				                    </div>
+				                    
+				                    <div class="form-group row"><label class="col-sm-2 col-form-label"></label>
+				                      <div class="col-sm-10"><button type="submit" class="btn btn-warning btn-lg">수정하기</button></div>
+				                    </div>
+				                  </div><!-- /.col -->
+				                </div><!-- /.row -->
+			              	</div>
+						</form>
+							
+										
+											
+										
+							
 						</div>
 						<!-- /.tab-pane -->
 					</div>
@@ -273,11 +280,64 @@
 .likeHate{
 	cursor: pointer;
 }
+.tsize{
+	font-size: 15px;
+	margin-left: 10px;
+}
+.disnone{
+    display: none;
+}
+.disblock{
+	animation: fade-in 1s;
+  	animation-fill-mode: forwards;
+    display: block;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.top-line{
+	padding-top: 15px;
+	border-top: 3px solid #ffc107;
+	padding-bottom: 20px;
+	font-size: 17px;
+}
+hr{
+	height: 1px;
+	background-color: #ffc107;
+	margin-top: 10px;
+}
+.text-sm {
+    font-size: 19px;
+}
+
 </style>
 <script>
-	$(function(){
-		$('.likeHate').click(function(){
-			style.color = 'blue';
-		});
+	
+	$('.likeHate').click(function(){
+		style.color = 'blue';
 	});
+	
+	$("#update-btn").click(function(){
+			$('#updatefrm').toggleClass("disblock");
+			$('#updatefrm').toggleClass("disnone");
+			if($('#updatefrm').hasClass("disnone"))
+			$(this).text("답변 수정");
+			if(!$('#updatefrm').hasClass("disnone"))
+			$(this).text("수정 취소");
+	});
+	
+	$("#delete-btn").click(function(){
+		var qnano = $("input[name='qnano']").val();
+		var email = $("input[name='email']").val();
+		console.log(qnano);
+		console.log(email);
+		location.replace("deleteQnaResponse.do?qnano="+qnano+"&email="+email);
+	});
+	
 </script>
