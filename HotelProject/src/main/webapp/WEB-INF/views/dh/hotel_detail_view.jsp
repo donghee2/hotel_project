@@ -38,6 +38,12 @@
 		width: 600px;
 		margin: 40px auto;
 	}
+	.hotelView-container {
+		width: 1200px;
+		margin: 0 auto;
+		border: 1px solid black; 
+		background-image: url(img/slider-1);
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -144,6 +150,7 @@
 </script>
 </head>
 <body>
+	<div class="hotelView-container">
 	<!-- Nav tabs -->
 	<div class="tab-container">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -175,5 +182,6 @@
 	</div>
 	<div id="map" style="width:800px;height:400px;"></div>
 	<p class="result"></p>
+	</div>
 </body>
 </html>
