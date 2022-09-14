@@ -7,6 +7,10 @@
 		select roomno, roomtype, roomsimplemanual, price, (select ri.roomimagepath from roomimage ri where r.roomno = ri.roomno) as roomimagepath
 		from room r
 	</select>
+	
+	<select id="selectHotelView" resultType="hotel">
+		select * from hotel
+	</select>
 </mapper>
 
 

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hotel.dto.BookingDTO;
+import com.hotel.dto.HotelDTO;
 import com.hotel.dto.RoomDTO;
 import com.hotel.service.MainService;
 
@@ -28,7 +29,10 @@ public class MainController {
 	}
 	
 	@RequestMapping("/hotelDetailView.do")
-	public String hotelDetailView() {
+	public String hotelDetailView(Model model) {
+		List<HotelDTO> hotellist = mainservice.selectHotelView();
+		System.out.println(hotellist);
+		model.addAttribute("hotellist", hotellist);
 		return "hotel_detail_view";
 	}
 }
