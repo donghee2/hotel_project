@@ -78,11 +78,15 @@
 					<div class="tab-content">
 						<div class="tab-pane" id="timeline">
 							<li><i class="fa fa-clock-o bg-gray"></i></li>
-							</ul>
 						</div>
 						<!-- /.tab-pane -->
 						<div class="active tab-pane" id="activity">
 							<!-- Post -->
+							<c:if test="${requestScope.qna[0].qnano == null}">
+							<p class="text-sm text-orange">
+								<i class="fa fa-comments-o margin-r-5"></i>
+								등록된 문의 내역이 없습니다</p>
+							</c:if>
 							<c:forEach var="qna" items="${requestScope.qna }">
 							<div class="top-line">
 							<c:if test="${qna.qnaresponse == null }">
@@ -339,5 +343,7 @@ hr{
 		console.log(email);
 		location.replace("deleteQnaResponse.do?qnano="+qnano+"&email="+email);
 	});
+	
+	
 	
 </script>

@@ -11,7 +11,6 @@
 <style>
 	.member_delete{
 		margin-top:10px;
-		color:gray;
 	}
 </style>
 
@@ -68,7 +67,7 @@
 														<a class="nav-link" href="#"><i class="fa fa-twitter"></i></a>
 														<a class="nav-link" href="#"><i class="fa fa-github"></i></a>
 														<a class="nav-link" href="#"><i class="fa fa-linkedin"></i></a>
-														<a class="member_delete">삭제</a>
+														<a class="member_delete btn btn-warning btn-sm mx-auto text-white">계정 정보 삭제</a>
 													</nav>
 												</td>
 											</tr>
@@ -88,6 +87,8 @@
 	<script>
 	$(function(){
 		$('.member_delete').click(function(){
+			if(!confirm("정말로 해당 회원 정보를 삭제하시겠습니까?"))
+				return;
 			var d = 'email='+$(this).parent().parent().parent().find("small.sidetitle").text();
 			$.ajax({
 				url:"memberDelete.do",

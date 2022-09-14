@@ -224,9 +224,8 @@ public class AdminController {
 			email = "test00";
 		MemberDTO member = memberservice.selectMember(email);
 		String date = member.getBirth();
-		member.setBirth(date.substring(0, 8));
+		member.setBirth(date.substring(0, 10));
 		
-		System.out.println(member.toString());
 		List<QnADTO> qna = qnaservice.selectQna(email, pageNo);
 		int count = qnaservice.QnaCount(email);
 		PaggingVO vo = new PaggingVO(count, pageNo, 5 ,5);
@@ -258,14 +257,22 @@ public class AdminController {
 	public void memberUpdate(MemberDTO dto, HttpServletResponse response, HttpServletRequest request) 
 			throws IOException {
 		System.out.println(dto.toString());
-//		
-//		int result = memberservice.updateMember(dto);
-//		if(result == 1)
-//			response.getWriter().write(
-//					"<stript>alert('수정이 완료되었습니다.');location.href='memberProfile.do?email='"+dto.getEmail()+";</stript>");
-//		else
-//			response.getWriter().write(
-//					"<stript>alert('수정에 실패하였습니다.');</stript>");
+		
+		dto.setBirth(dto.getBirth().replaceAll("-", "/").substring(2, 10));
+		
+		if(dto.getGender().equals("남성"))
+			dto.setGender("M");
+		else
+			dto.setGender("F");
+		boolean flag = false;
+		int result = memberservice.updateMember(dto);
+		response.setContentType("text/html;charset=utf-8");
+		if(result == 1)
+			response.getWriter().write(
+					"<script>alert('수정이 완료되었습니다.');location.href='memberProfile.do?email="+dto.getEmail()+"';</script>");
+		else
+			response.getWriter().write(
+					"<script>alert('수정에 실패하였습니다.');</script>");
 	}
 	
 	@RequestMapping("/memberDelete.do")
@@ -273,7 +280,6 @@ public class AdminController {
 		int result = memberservice.deleteMember(email);
 		response.getWriter().write(String.valueOf(result));
 	}
-	
 	
 	@RequestMapping("/memberSearch.do")
 	public ResponseEntity<List<MemberDTO>> memberSearch(String kind, String search) {

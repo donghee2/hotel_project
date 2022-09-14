@@ -22,7 +22,7 @@
 	</delete>
 	
 	<update id="updateMember" parameterType="member">
-		update member set pass = #{password}, membername = #{memberName}, birth = to_date(#{birth},'StringStringStringYYYY-MM-DD'),
+		update member set pass = #{password}, membername = #{memberName}, birth = #{birth},
 		gender = #{gender}, membertel = #{tel}, memberaddress = #{address} where email = #{email}
 	</update>
 	
