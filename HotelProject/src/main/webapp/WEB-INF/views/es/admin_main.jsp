@@ -34,6 +34,11 @@
 	.test {
 		border-left: 3px solid green;
 	}
+	body{
+		min-width: 1800px;
+		overflow: auto;
+	
+	}
 </style>
 </head>
 <body class="hold-transition skin-yellow sidebar-mini">

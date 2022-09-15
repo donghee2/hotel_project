@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.hotel.dto.HotelDTO;
 import com.hotel.dto.MemberDTO;
 import com.hotel.dto.QnADTO;
+import com.hotel.dto.RoomDTO;
 import com.hotel.service.HotelService;
 import com.hotel.service.MemberService;
 import com.hotel.service.QnAService;
@@ -58,6 +59,7 @@ public class AdminController {
 		// 정보확인
 		for(int i=0;i<list.size();i++) {
 //			System.out.println(list.get(i).toString());
+			// 전화번호 형식 변환부
 			String tel = list.get(i).getHotelTel();
 			if(tel.length() == 8){
 				list.get(i).setHotelTel(tel.replaceFirst("^([0-9]{4})([0-9]{4})$", "$1-$2"));
@@ -67,6 +69,10 @@ public class AdminController {
 			}else{
 			list.get(i).setHotelTel(tel.replaceFirst("(^02|[0-9]{3})([0-9]{3,4})([0-9]{4})$","$1-$2-$3"));
 			}
+			
+			// 호텔 전체 객실 개수 구하는 부분
+			int allEa = hotelservice.selectAllEa(list.get(i).getHotelNo());
+			list.get(i).setHotelAllRoomEA(allEa);
 		}
 		
 		model.addAttribute("title", "전체 지점 관리");
@@ -285,6 +291,88 @@ public class AdminController {
 	public ResponseEntity<List<MemberDTO>> memberSearch(String kind, String search) {
 		List<MemberDTO> list = memberservice.searchMember(kind, search);
 		return ResponseEntity.ok(list);
+	}
+	
+	@RequestMapping("/selectAllRoom.do")
+	public String selectAllRoom(Model model) {
+		List<RoomDTO> list = roomservice.selectAllRoom();
+		
+		// 정보확인
+		for(int i=0;i<list.size();i++) {
+			System.out.println(list.get(i).toString());
+			
+			List<RoomDTO> optionlist = roomservice.selectRoomOption(list.get(i).getRoomNo());
+			String hotelName = roomservice.selectHotelName(list.get(i).getHotelNo());
+			list.get(i).setHotelName(hotelName);
+			list.get(i).setOptionlist(optionlist);
+		}
+		
+		model.addAttribute("title", "전체 객실 관리");
+		model.addAttribute("page", "allRoomView.jsp" );
+		model.addAttribute("list", list);
+		
+		return "es/admin_main";
+	}
+	
+	@RequestMapping("/updateRoomView.do")
+	public String updateRoomView(String roomNo, Model model) {
+		
+		RoomDTO dto = roomservice.selectOneRoom(roomNo);
+		
+		List<RoomDTO> hotellist = roomservice.selectHotelList();
+		dto.setHotellist(hotellist);
+		
+		model.addAttribute("title", "전체 객실 관리");
+		model.addAttribute("page", "updateRoomView.jsp");
+		model.addAttribute("dto", dto);
+		
+		return "es/admin_main";
+	}
+	
+	@RequestMapping("/updateRoom.do")
+	public String updateRoom(HotelDTO dto, String addr1, String addr2, String addr3,
+			Model model, MultipartHttpServletRequest request) throws IOException {
+		System.out.println("hotel update test : " + dto.getHotelNo());
+		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
+
+		File userRoot = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\");
+		String encoding = "utf-8";
+		
+		if(!userRoot.exists())
+			userRoot.mkdirs();
+		
+		List<MultipartFile> filelist = request.getFiles("file");
+		int i = 1;
+		for(MultipartFile f : filelist) {
+			String originalFileName = f.getOriginalFilename();
+			if(f.getSize() == 0) continue;
+			File uploadFile = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\" + "\\" +originalFileName);
+			System.out.println(originalFileName);
+			dto.setHotelImage(dto.getHotelImage()+ originalFileName);
+			i++;
+			try {
+				//실제로 전송
+				f.transferTo(uploadFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
+
+		String hotelAddress = addr1 + "/" + addr2 + "/" + addr3;
+			
+		dto.setHotelAddress(hotelAddress);
+		dto.setHotelTel(dto.getHotelTel().replaceAll("-", ""));
+		
+		System.out.println("update test : ");
+		System.out.println(dto.toString());
+			
+		int result = hotelservice.updateHotel(dto);
+		System.out.println(result);
+
+		return "redirect:/selectAllHotel.do";
 	}
 }
 

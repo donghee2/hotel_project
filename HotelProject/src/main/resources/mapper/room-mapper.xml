@@ -4,7 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hotel.mapper.RoomMapper">
 	
+	<select id="selectAllRoom" resultType="room">
+		select r.*, (select roomimage from roomimage ri where r.roomno = ri.roomno ) as roomimage from room r
+	</select>
 	
+	<select id="selectRoomOption" parameterType="String" resultType="room">
+		select * from roomoption where roomno = #{roomNo}
+	</select>
+	
+	<select id="selectHotelName" parameterType="String" resultType="String">
+		select hotelname from hotel where hotelno = #{hotelno}
+	</select>
+	
+	<select id="selectOneRoom" parameterType="String" resultType="room">
+		select r.*, (select roomimage from roomimage ri where r.roomno = ri.roomno ) as roomimage from room r where r.roomno = #{roomNo}
+	</select>
+	
+	<select id="selectHotelList" resultType="room">
+		select hotelno, hotelname from hotel
+	</select>
 	
 </mapper>
 

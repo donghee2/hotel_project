@@ -34,6 +34,10 @@ public class HotelService {
 	public int deleteHotel(String hotelNo) {
 		return hotelmapper.deleteHotel(hotelNo);
 	}
+
+	public int selectAllEa(String hotelNo) {
+		return hotelmapper.selectAllEa(hotelNo);
+	}
 	
 	
 	

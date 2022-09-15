@@ -40,7 +40,7 @@
 							class="icon-home"></i><span>메인 페이지</span><span
 							class="pull-right-container"><i
 								class="fa fa-angle-right pull-right"></i></span></a></li>
-					<li class="header nav-small-cap">Hotel</li>
+					<li class="header nav-small-cap">HOTEL</li>
 					<li class="treeview"><a href="#"><i class="icon-chart"></i><span>호텔 관리</span><span
 							class="pull-right-container"><i
 								class="fa fa-angle-right pull-right"></i></span></a>
@@ -51,13 +51,9 @@
 					<li class="treeview"><a href="#"><i class="icon-compass"></i><span>객실 관리</span><span class="pull-right-container"><i
 								class="fa fa-angle-right pull-right"></i></span></a>
 					<ul class="treeview-menu">
-							<li><a href="pages/ico/ico-distribution-countdown.html">test</a></li>
-							<li><a href="pages/ico/ico-roadmap-timeline.html">Roadmap/Timeline</a></li>
+							<li><a href="selectAllRoom.do">전체 객실 관리</a></li>
+							<li><a href="pages/ico/ico-roadmap-timeline.html">객실 등록</a></li>
 							<li><a href="pages/ico/ico-progress.html">Progress Bar</a></li>
-							<li><a href="pages/ico/ico-details.html">Details</a></li>
-							<li><a href="pages/ico/ico-listing.html">ICO Listing</a></li>
-							<li><a href="pages/ico/ico-filter.html">ICO Listing -
-									Filters</a></li>
 						</ul></li>
 					
 										<li class="header nav-small-cap">MEMBER</li>
@@ -67,53 +63,13 @@
 					<ul class="treeview-menu">
 							<li><a href="selectAllMember.do">전체 회원 관리</a></li>
 						</ul></li>
-					<li class="treeview"><a href="#"><i class="icon-magnet"></i><span>Extension</span><span
+					
+					
+					<li class="treeview"><a href="#"><i class="icon-menu"></i><span>임시 메뉴</span><span
 							class="pull-right-container"><i
 								class="fa fa-angle-right pull-right"></i></span></a>
 					<ul class="treeview-menu">
-							<li><a href="pages/extension/fullscreen.html">Fullscreen</a></li>
-						</ul></li>
-					<li class="treeview"><a href="#"><i
-							class="icon-folder-alt"></i><span>Sample Pages</span><span
-							class="pull-right-container"><i
-								class="fa fa-angle-right pull-right"></i></span></a>
-					<ul class="treeview-menu">
-							<li><a href="pages/samplepage/blank.html">Blank</a></li>
-							<li><a href="pages/samplepage/coming-soon.html">Coming
-									Soon</a></li>
-							<li><a href="pages/samplepage/custom-scroll.html">Custom
-									Scrolls</a></li>
-							<li><a href="pages/samplepage/faq.html">FAQ</a></li>
-							<li><a href="pages/samplepage/gallery.html">Gallery</a></li>
-							<li><a href="pages/samplepage/invoice.html">Invoice</a></li>
-							<li><a href="pages/samplepage/lightbox.html">Lightbox
-									Popup</a></li>
-							<li><a href="pages/samplepage/pace.html">Pace</a></li>
-							<li><a href="pages/samplepage/pricing.html">Pricing</a></li>
-							<li class="treeview"><a href="#">Authentication<span
-									class="pull-right-container"><i
-										class="fa fa-angle-right pull-right"></i></span></a>
-							<ul class="treeview-menu">
-									<li><a href="pages/samplepage/login.html">Login</a></li>
-									<li><a href="pages/samplepage/register.html">Register</a></li>
-									<li><a href="pages/samplepage/lockscreen.html">Lockscreen</a></li>
-									<li><a href="pages/samplepage/user-pass.html">Recover
-											password</a></li>
-								</ul></li>
-							<li class="treeview"><a href="#">Error Pages<span
-									class="pull-right-container"><i
-										class="fa fa-angle-right pull-right"></i></span></a>
-							<ul class="treeview-menu">
-									<li><a href="pages/samplepage/404.html">404</a></li>
-									<li><a href="pages/samplepage/500.html">500</a></li>
-									<li><a href="pages/samplepage/maintenance.html">Maintenance</a></li>
-								</ul></li>
-						</ul></li>
-					<li class="treeview"><a href="#"><i class="icon-menu"></i><span>Multilevel</span><span
-							class="pull-right-container"><i
-								class="fa fa-angle-right pull-right"></i></span></a>
-					<ul class="treeview-menu">
-							<li><a href="#">Level One</a></li>
+							<li><a href="#">더미 메뉴</a></li>
 							<li class="treeview"><a href="#">Level One<span
 									class="pull-right-container"><i
 										class="fa fa-angle-right pull-right"></i></span></a>

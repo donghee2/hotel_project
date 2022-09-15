@@ -54,14 +54,14 @@
 											<tr>
 												<td class="text-center">${h.hotelNo }</td>
 												<td class="text-center"><a
-													href="hotelUpdate.do?hotelNo=${h.hotelNo }"
+													href="updateHotelView.do?hotelNo=${h.hotelNo }"
 													class="text-yellow hover-warning">${h.hotelName }</a></td>
 												<td class="text-center htl">${h.hotelTel}</td>
 												<td class="text-center">${h.hotelAddress}</td>
 												<td class="text-center"><img class="hotel_image" src="${h.hotelImage}" alt="호텔 메인 이미지"></td>
 												<td class="text-center">${h.hotelSimpleManual}</td>
 												<td class="text-center">${h.hotelDetailManual}</td>
-												<td class="text-center">0</td>
+												<td class="text-center">${h.hotelAllRoomEA }</td>
 												<td class="text-center">
 													<a href="updateHotelView.do?hotelNo=${h.hotelNo }"
 													class="btn btn-warning btn-sm mx-auto">수정하기</a>

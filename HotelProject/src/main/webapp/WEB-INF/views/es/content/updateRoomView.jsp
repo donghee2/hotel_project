@@ -15,17 +15,17 @@
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<h1>호텔 정보 수정</h1>
+				<h1>객실 정보 수정</h1>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admin.do"><i
 							class="fa fa-dashboard"></i>Main</a></li>
-					<li class="breadcrumb-item"><a href="#">호텔 관리</a></li>
-					<li class="breadcrumb-item active"><a href="insertHotelView.do">호텔 지점 등록</a></li>
+					<li class="breadcrumb-item"><a href="#">객실 관리</a></li>
+					<li class="breadcrumb-item active"><a href="insertHotelView.do">객실 등록</a></li>
 				</ol>
 			</section>
 			<!-- Main content -->
 			<section class="content">
-			<form class="hotelfrm" action="updateHotel.do" method="post" enctype="multipart/form-data">
+			<form class="hotelfrm" action="updateRoom.do" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<!-- /.col -->
 					<div class="col-xl-8 col-lg-7">
@@ -38,46 +38,53 @@
 								<div class="row">
 									<div class="col-12">
 										<div class="form-group row">
-											<label class="col-sm-2 col-form-label">Hotel No</label>
+											<label class="col-sm-2 col-form-label">Room No</label>
 											<div class="col-sm-6">
-												<input class="form-control" type="text" placeholder="호텔 코드 넘버 입력" name="hotelNo"
-												value="${requestScope.dto.hotelNo }">
+												<input class="form-control" type="text" placeholder="객실 코드 입력" name="roomNo"
+												value="${requestScope.dto.roomNo }">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-2 col-form-label">Name</label>
+											<label class="col-sm-2 col-form-label">From Hotel</label>
 											<div class="col-sm-6">
-												<input class="form-control" type="text" placeholder="호텔명 입력" name="hotelName"
-												value="${requestScope.dto.hotelName }">
+												<div class="form-group">
+													<select class="form-control select2 w-p100">
+													<c:set var="hotelNo" value="${requestScope.dto.hotelNo }"></c:set>
+													<c:forEach var="h" items="${requestScope.dto.hotellist }">
+														<c:choose>
+															<c:when test="${h.hotelNo eq hotelNo}">
+								                        		<option selected="selected">${h.hotelName }(${h.hotelNo })</option>
+															</c:when>
+															<c:otherwise>
+								                        		<option>${h.hotelName }(${h.hotelNo })</option>
+															</c:otherwise>
+														</c:choose>
+							                      	</c:forEach>
+							                      	</select></div>
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-2 col-form-label">Tel</label>
+											<label class="col-sm-2 col-form-label">Name/Type</label>
 											<div class="col-sm-6">
-												<input class="form-control phoneNumber" type="tel"
-													placeholder="호텔 전화 번호 입력(- 제외 입력)" maxlength="13" name="hotelTel"
-													value="${requestScope.dto.hotelTel }">
+												<input class="form-control" type="text"
+													placeholder="객실 이름 입력" name="roomType"
+													value="${requestScope.dto.roomType }">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-2 col-form-label">Address</label>
+											<label class="col-sm-2 col-form-label">Price</label>
 											<div class="col-sm-10">
-												<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly"
-												value="${requestScope.address[0] }">
-    											<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
-    											<span id="guide" style="color:#999;display:none;"></span>            
-    											<input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr2" id="addr2" type="text" readonly="readonly" 
-    											value="${requestScope.address[1] }">
-												<input class="form-control" type="text" name="addr3" id="addr3"
-													placeholder="호텔 상세 주소 입력" value="${requestScope.address[2] }">
+												<input class="form-control" type="text"
+													placeholder="객실 가격 입력" name="roomPrice"
+													value="${requestScope.dto.price }">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-2 col-form-label">Main Image</label>
+											<label class="col-sm-2 col-form-label">Room Image</label>
 											<div class="col-sm-10">
 												<input class="form-control" type="file"
-													placeholder="호텔 메인 이미지 등록" accept="image/*" name="file">
-												<input class="form-control" type="hidden" name="hotelImage"
+													placeholder="객실 이미지 등록" accept="image/*" name="file">
+												<input class="form-control" type="hidden" name="roomImage"
 												value="../admin_resource/images/">
 											</div>
 										</div>
@@ -85,8 +92,8 @@
 											<label class="col-sm-2 col-form-label">Simple Manual</label>
 											<div class="col-sm-10">
 												<input class="form-control" type="text"
-													placeholder="호텔 간단 소개 입력" name="hotelSimpleManual"
-													value="${requestScope.dto.hotelSimpleManual }">
+													placeholder="호텔 간단 소개 입력" name="roomSimpleManual"
+													value="${requestScope.dto.roomSimpleManual }">
 											</div>
 										</div>
 										<div class="form-group row">
@@ -94,7 +101,7 @@
 											<div class="col-sm-10">
 												<input class="form-control" type="text"
 													placeholder="호텔 상세 소개 입력" name="hotelDetailManual"
-													value="${requestScope.dto.hotelDetailManual }">
+													value="${requestScope.dto.roomDetailManual }">
 											</div>
 										</div>
 										<div class="form-group row">

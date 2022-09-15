@@ -11,6 +11,17 @@
 <style>
 	.member_delete{
 		margin-top:10px;
+		margin-left: 10px;
+	}
+	.member-detail{
+		margin-top:10px;
+	}
+	.btn-array{
+		text-align: right;
+		justify-content: right;
+	}
+	.box-body{
+		width: 1000px;
 	}
 </style>
 
@@ -57,17 +68,14 @@
 												<td class="w-300">
 													<p class="mb-0">
 														<a href="memberProfile.do?email=${member.email }"><strong>${member.memberName }</strong></a>
-														<small class="sidetitle" name="sidetitle">${member.email }</small>
+														<small class="sidetitle" name="sidetitle">email) ${member.email }</small>
 													</p>
-													<p class="mb-0">${member.tel }</p>
+													<p class="mb-0">tel) ${member.tel }</p>
 												</td>
 												<td>
-													<nav class="nav mt-2">
-														<a class="nav-link" href="#"><i class="fa fa-facebook"></i></a>
-														<a class="nav-link" href="#"><i class="fa fa-twitter"></i></a>
-														<a class="nav-link" href="#"><i class="fa fa-github"></i></a>
-														<a class="nav-link" href="#"><i class="fa fa-linkedin"></i></a>
-														<a class="member_delete btn btn-warning btn-sm mx-auto text-white">계정 정보 삭제</a>
+													<nav class="nav mt-1 btn-array">
+														<a href="memberProfile.do?email=${member.email }" class="member-detail btn btn-warning btn-sm text-white">회원 상세 보기</a>
+														<a class="member_delete btn btn-warning btn-sm text-white">계정 정보 삭제</a>
 													</nav>
 												</td>
 											</tr>

@@ -28,6 +28,10 @@
 		delete from hotel where hotelno = #{hotleNo}
 	</delete>
 	
+	<select id="selectAllEa" parameterType="String" resultType="int">
+		select count(*) from room where hotelno = #{hotleNo}
+	</select>
+	
 	
 </mapper>
 

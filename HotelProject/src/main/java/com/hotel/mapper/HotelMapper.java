@@ -19,5 +19,7 @@ public interface HotelMapper {
 
 	int deleteHotel(String hotelNo);
 
+	int selectAllEa(String hotelNo);
+
 
 }
