@@ -4,95 +4,186 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	c107017d3c78a41473933d3434b2865b"></script>
-<style>
-	.tab-container {
-		display: flex;
-		justify-content: center;
-		padding: 150px 0px;
-	}
-	.tab-container ul{
-		height: 30px;
-		border-bottom: none;
-	}
-	.tab-container ul li {
-		height: 30px;
-	}
-	.tab-container button {
-		width: 200px;
-		height: 30px;
-	}
-	.tab-content {
-		display: flex;
-		justify-content: center;
-	}
-	#map {
-		margin: 50px auto;
-	}
-	.result {
-		width: 600px;
-		margin: 40px auto;
-	}
-	.hotelView-container {
-		width: 1200px;
-		margin: 0 auto;
-		border: 1px solid black; 
-		background-image: url(img/slider-1);
-	}
-</style>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>객실 정보</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="tab/css/bootstrap.min.css">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="tab/css/style.css">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="tab/css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="tab/css/custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
+
 <body>
-	<div class="room-list-sec bg-gray pt-100 pb-70">
+	<!-- Start Menu -->
+	<div class="menu-box">
 		<div class="container">
-			<!-- Section Title Start -->
 			<div class="row">
-				<div class="col-md-6">
-					<div class="sec-title">
-						<h1>
-							<span class="title_border"></span>객실.
-						</h1>
-						<p>객실소개</p>
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>객실 소개 </h2>
 					</div>
 				</div>
 			</div>
-			<!-- Section Title End -->
 			<div class="row">
-				<!-- Single Room Start -->
-				<c:forEach var="room" items="${requestScope.roomlist }">
-				<input type="hidden" name="roomno" value="${room.roomno }">
-				<div class="col-md-4 col-sm-6">
-					<p>${room.hotelname }</p>
-					<div class="room-list-inner">
-						<div class="room-list-img">
-							<img src="../img/roomimg.jpg" alt="" />
-							<div class="room-list-img-overlay">
-								<a href="#">${room.price }</a>
-							</div>
+				<div class="col-lg-12">
+					<div class="special-menu text-center">
+						<div class="button-group filter-button-group">
+							<button class="active" data-filter="*">전체 지점 조회</button>
+							<c:forEach var="hotel" items="${requestScope.hotellist }">
+								<button data-filter=".${hotel.hotelName }">${hotel.hotelName }</button>
+							
+							</c:forEach>
+							<!-- <button data-filter=".lunch">강남점</button>
+							<button data-filter=".dinner">홍대점</button> -->
 						</div>
-						<div class="room-list-text">
-							<h2>
-								<a href="#">${room.roomtype }</a><span class="room-rating"><i
-									class="icofont-ui-rating"></i><i class="icofont-ui-rating"></i><i
-									class="icofont-ui-rating"></i><i class="icofont-ui-rate-blank"></i><i
-									class="icofont-ui-rate-blank"></i></span>
-							</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row special-list">
+				<c:forEach var="room" items="${requestScope.roomlist }">
+				<div class="col-lg-4 col-md-6 special-grid ${room.hotelname }">
+					<div class="gallery-single fix">
+						<img src="${room.roomimagepath }" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>${room.roomtype }</h4>
 							<p>${room.roomsimplemanual }</p>
+							<h5>${room.price }</h5>
 							<a href="#" class="booking-btn">예약하기</a>
 							<a href="#" class="booking-btn">찜하기</a>
 						</div>
 					</div>
 				</div>
 				</c:forEach>
-				<!-- Single Room End -->
+				<!-- <div class="col-lg-4 col-md-6 special-grid drinks">
+					<div class="gallery-single fix">
+						<img src="images/img-02.jpg" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>Special Drinks 2</h4>
+							<p>Sed id magna vitae eros sagittis euismod.</p>
+							<h5> $9.79</h5>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid drinks">
+					<div class="gallery-single fix">
+						<img src="images/img-03.jpg" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>Special Drinks 3</h4>
+							<p>Sed id magna vitae eros sagittis euismod.</p>
+							<h5> $10.79</h5>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+					<div class="gallery-single fix">
+						<img src="images/img-04.jpg" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>Special Lunch 1</h4>
+							<p>Sed id magna vitae eros sagittis euismod.</p>
+							<h5> $15.79</h5>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+					<div class="gallery-single fix">
+						<img src="images/img-05.jpg" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>Special Lunch 2</h4>
+							<p>Sed id magna vitae eros sagittis euismod.</p>
+							<h5> $18.79</h5>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+					<div class="gallery-single fix">
+						<img src="images/img-06.jpg" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>Special Lunch 3</h4>
+							<p>Sed id magna vitae eros sagittis euismod.</p>
+							<h5> $20.79</h5>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid dinner">
+					<div class="gallery-single fix">
+						<img src="images/img-07.jpg" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>Special Dinner 1</h4>
+							<p>Sed id magna vitae eros sagittis euismod.</p>
+							<h5> $25.79</h5>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid dinner">
+					<div class="gallery-single fix">
+						<img src="images/img-08.jpg" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>Special Dinner 2</h4>
+							<p>Sed id magna vitae eros sagittis euismod.</p>
+							<h5> $22.79</h5>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid dinner">
+					<div class="gallery-single fix">
+						<img src="images/img-09.jpg" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>Special Dinner 3</h4>
+							<p>Sed id magna vitae eros sagittis euismod.</p>
+							<h5> $24.79</h5>
+						</div>
+					</div> -->
+				</div> 
 				
 			</div>
 		</div>
 	</div>
+	<!-- End Menu -->
+
+
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="tab/js/jquery-3.2.1.min.js"></script>
+	<script src="tab/js/popper.min.js"></script>
+	<script src="tab/js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+	<script src="tab/js/jquery.superslides.min.js"></script>
+	<script src="tab/js/images-loded.min.js"></script>
+	<script src="tab/js/isotope.min.js"></script>
+	<script src="tab/js/baguetteBox.min.js"></script>
+	<script src="tab/js/form-validator.min.js"></script>
+    <script src="tab/js/contact-form-script.js"></script>
+    <script src="tab/js/custom.js"></script>
 </body>
 </html>

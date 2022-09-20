@@ -96,12 +96,16 @@ public class RoomDTO {
 	}
 
 
+
 	@Override
 	public String toString() {
 		return "RoomDTO [roomno=" + roomno + ", hotelno=" + hotelno + ", roomtype=" + roomtype + ", roomsimplemanual="
 				+ roomsimplemanual + ", roomdetailmanual=" + roomdetailmanual + ", roomimagepath=" + roomimagepath
-				+ ", price=" + price + "]";
+				+ ", price=" + price + ", hotelname=" + hotelname + "]";
 	}
+
+
+	
 
 	
 
