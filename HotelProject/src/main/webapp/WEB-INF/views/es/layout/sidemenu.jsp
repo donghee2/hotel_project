@@ -52,8 +52,8 @@
 								class="fa fa-angle-right pull-right"></i></span></a>
 					<ul class="treeview-menu">
 							<li><a href="selectAllRoom.do">전체 객실 관리</a></li>
-							<li><a href="pages/ico/ico-roadmap-timeline.html">객실 등록</a></li>
-							<li><a href="pages/ico/ico-progress.html">Progress Bar</a></li>
+							<li><a href="insertRoomView.do">객실 등록</a></li>
+							<li><a href="setOptionView.do">옵션 관리</a></li>
 						</ul></li>
 					
 										<li class="header nav-small-cap">MEMBER</li>

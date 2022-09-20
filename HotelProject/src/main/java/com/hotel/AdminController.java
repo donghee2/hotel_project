@@ -232,6 +232,8 @@ public class AdminController {
 		String date = member.getBirth();
 		member.setBirth(date.substring(0, 10));
 		
+		String[] addr = member.getAddress().split("/"); 
+		
 		List<QnADTO> qna = qnaservice.selectQna(email, pageNo);
 		int count = qnaservice.QnaCount(email);
 		PaggingVO vo = new PaggingVO(count, pageNo, 5 ,5);
@@ -239,6 +241,7 @@ public class AdminController {
 		model.addAttribute("pagging", vo);
 		model.addAttribute("dto", member);
 		model.addAttribute("qna", qna);
+		model.addAttribute("addr", addr);
 		model.addAttribute("title", "회원 프로필");
 		model.addAttribute("page", "memberProfile.jsp" );
 		return "es/admin_main";
@@ -260,17 +263,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/memberUpdate.do")
-	public void memberUpdate(MemberDTO dto, HttpServletResponse response, HttpServletRequest request) 
+	public void memberUpdate(MemberDTO dto, String addr1, String addr2, String addr3,
+			HttpServletResponse response, HttpServletRequest request) 
 			throws IOException {
-		System.out.println(dto.toString());
+		dto.setAddress(addr1 + "/" + addr2 + "/" + addr3);
 		
 		dto.setBirth(dto.getBirth().replaceAll("-", "/").substring(2, 10));
 		
-		if(dto.getGender().equals("남성"))
-			dto.setGender("M");
-		else
-			dto.setGender("F");
-		boolean flag = false;
+		System.out.println("memberupdatetest : " + dto.toString());
+		
 		int result = memberservice.updateMember(dto);
 		response.setContentType("text/html;charset=utf-8");
 		if(result == 1)
@@ -299,14 +300,13 @@ public class AdminController {
 		
 		// 정보확인
 		for(int i=0;i<list.size();i++) {
-			System.out.println(list.get(i).toString());
+			//System.out.println(list.get(i).toString());
 			
 			List<RoomDTO> optionlist = roomservice.selectRoomOption(list.get(i).getRoomNo());
 			String hotelName = roomservice.selectHotelName(list.get(i).getHotelNo());
 			list.get(i).setHotelName(hotelName);
 			list.get(i).setOptionlist(optionlist);
 		}
-		
 		model.addAttribute("title", "전체 객실 관리");
 		model.addAttribute("page", "allRoomView.jsp" );
 		model.addAttribute("list", list);
@@ -318,21 +318,33 @@ public class AdminController {
 	public String updateRoomView(String roomNo, Model model) {
 		
 		RoomDTO dto = roomservice.selectOneRoom(roomNo);
-		
+		List<RoomDTO> optionlist = roomservice.selectRoomOption(roomNo);
 		List<RoomDTO> hotellist = roomservice.selectHotelList();
+		List<RoomDTO> insertoptionlist = roomservice.selectInsertRoomOption(roomNo);
+		
 		dto.setHotellist(hotellist);
+		dto.setOptionlist(optionlist);
 		
 		model.addAttribute("title", "전체 객실 관리");
 		model.addAttribute("page", "updateRoomView.jsp");
 		model.addAttribute("dto", dto);
+		model.addAttribute("insertoptionlist", insertoptionlist);
 		
 		return "es/admin_main";
 	}
 	
 	@RequestMapping("/updateRoom.do")
-	public String updateRoom(HotelDTO dto, String addr1, String addr2, String addr3,
-			Model model, MultipartHttpServletRequest request) throws IOException {
-		System.out.println("hotel update test : " + dto.getHotelNo());
+	public String updateRoom(RoomDTO dto, Model model, MultipartHttpServletRequest request) throws IOException {
+		System.out.println("updateroom test : " + dto.getOptionName());
+		
+		// Room 옵션 재설정 부
+		String[] option = dto.getOptionName().split("/");
+		// 옵션 리셋
+		roomservice.resetRoomOption(dto.getRoomNo());
+		
+		for(int i=0;i<option.length;i++) {
+			roomservice.insertRoomOption(dto.getRoomNo(), option[i]);
+		}
 		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
 
 		File userRoot = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\");
@@ -348,7 +360,7 @@ public class AdminController {
 			if(f.getSize() == 0) continue;
 			File uploadFile = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\" + "\\" +originalFileName);
 			System.out.println(originalFileName);
-			dto.setHotelImage(dto.getHotelImage()+ originalFileName);
+			dto.setRoomImage(dto.getRoomImage()+ originalFileName);
 			i++;
 			try {
 				//실제로 전송
@@ -361,19 +373,132 @@ public class AdminController {
 		}
 		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
 
-		String hotelAddress = addr1 + "/" + addr2 + "/" + addr3;
-			
-		dto.setHotelAddress(hotelAddress);
-		dto.setHotelTel(dto.getHotelTel().replaceAll("-", ""));
-		
-		System.out.println("update test : ");
-		System.out.println(dto.toString());
-			
-		int result = hotelservice.updateHotel(dto);
-		System.out.println(result);
+		roomservice.updateRoom(dto);
+		roomservice.updateRoomImage(dto);
 
-		return "redirect:/selectAllHotel.do";
+		return "redirect:/selectAllRoom.do";
 	}
+	
+	@RequestMapping("/insertRoomView.do")
+	public String insertRoomView(Model model) {
+		List<RoomDTO> hotellist = roomservice.selectHotelList();
+		List<RoomDTO> alloptionlist = roomservice.allOptionList();
+		
+		model.addAttribute("hotellist", hotellist);
+		model.addAttribute("alloptionlist", alloptionlist);
+		model.addAttribute("title", "객실 등록");
+		model.addAttribute("page", "insertRoomView.jsp" );
+		
+		return "es/admin_main";
+	}
+	
+	@RequestMapping("/insertRoom.do")
+	public String insertRoom(RoomDTO dto, Model model, MultipartHttpServletRequest request
+			) throws IOException{
+		
+		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
+
+		File userRoot = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\");
+		String encoding = "utf-8";
+		
+		if(!userRoot.exists())
+			userRoot.mkdirs();
+		
+		List<MultipartFile> filelist = request.getFiles("file");
+		int i = 1;
+		for(MultipartFile f : filelist) {
+			String originalFileName = f.getOriginalFilename();
+			if(f.getSize() == 0) continue;
+			File uploadFile = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\" + "\\" +originalFileName);
+			System.out.println(originalFileName);
+			dto.setRoomImage(dto.getRoomImage()+ originalFileName);
+			i++;
+			try {
+				//실제로 전송
+				f.transferTo(uploadFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
+
+		int result = roomservice.insertRoom(dto);
+		int result2 = roomservice.insertRoomImage(dto);
+		
+		String[] option = dto.getOptionName().split("/");
+		
+		for(int j=0;j<option.length;j++) {
+			roomservice.insertRoomOption(dto.getRoomNo(), option[j]);
+		}
+		
+		model.addAttribute("title", "전체 지점 관리");
+		model.addAttribute("page", "allHotelView.jsp");
+		model.addAttribute("result", result);
+		
+		return "es/admin_main";
+	}
+	
+	
+	@RequestMapping("/setOptionView.do")
+	public String setOptionView(Model model) {
+		List<RoomDTO> alloptionlist = roomservice.allOptionList();
+		
+		model.addAttribute("alloptionlist", alloptionlist);
+		model.addAttribute("title", "옵션 관리");
+		model.addAttribute("page", "setOptionView.jsp");
+		
+		return "es/admin_main";
+	}
+	
+	@RequestMapping("/setOption.do")
+	public String setOption(String option, String optionPath, Model model, MultipartHttpServletRequest request
+			) throws IOException{
+		System.out.println("asdasd"+option);
+		System.out.println(optionPath);
+		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
+		
+		File userRoot = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\");
+		String encoding = "utf-8";
+		
+		if(!userRoot.exists())
+			userRoot.mkdirs();
+		
+		List<MultipartFile> filelist = request.getFiles("file");
+		int i = 1;
+		for(MultipartFile f : filelist) {
+			String originalFileName = f.getOriginalFilename();
+			if(f.getSize() == 0) continue;
+			File uploadFile = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\" + "\\" +originalFileName);
+			System.out.println(originalFileName);
+			optionPath += originalFileName;
+			i++;
+			try {
+				//실제로 전송
+				f.transferTo(uploadFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
+		String optionName = option;
+		int result = roomservice.setOption(optionName, optionPath);
+		
+		return "redirect:/setOptionView.do";
+	}
+	
+	@RequestMapping("deleteOption.do")
+	public ResponseEntity<Integer> setOptiion(String optionName) {
+		
+		int result = roomservice.deleteOption(optionName);
+		
+		return ResponseEntity.ok(result);
+	}
+	
+	
 }
 
 

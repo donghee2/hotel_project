@@ -78,7 +78,7 @@
 											</tr>
 											<tr>
 												<td class="text-center"><p style="margin-top: 27px;">Room Option</p></td>
-												<td class="text-center" colspan="7">
+												<td class="text-center" colspan="6">
 												<c:forEach var="o" items="${r.optionlist }">
 												<div class="icon-container">
 												<img class="icon_image" src="${o.optionPath}" alt="옵션 아이콘">

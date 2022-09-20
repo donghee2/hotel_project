@@ -116,8 +116,7 @@
 		</div>
 		<!-- /.content-wrapper -->
 		
-<!-- 우편 번호 주소 API -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script type="text/javascript">
 		
 	</script>

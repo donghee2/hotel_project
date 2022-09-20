@@ -186,7 +186,7 @@
 						<!-- /.tab-pane -->
 						<div class="tab-pane" id="settings">
 						<form action="memberUpdate.do" method="post">
-							<div class="box-body">
+							<div class="box-body"></div>
 				                <div class="row">
 				                  <div class="col-12">
 				                    <div class="form-group row"><label class="col-sm-2 col-form-label">이메일</label>
@@ -201,21 +201,37 @@
 				                    <div class="form-group row"><label class="col-sm-2 col-form-label">생일</label>
 				                      <div class="col-sm-5"><input class="form-control" type="date" value="${dto.birth }" name="birth" placeholder="이메일"></div>
 				                    </div>
-				                    <c:if test="${dto.gender == 'F' }">
 				                    	<div class="form-group row"><label class="col-sm-2 col-form-label">성별</label>
-				                      	<div class="col-sm-5"><input class="form-control" type="text" value="여성" name="gender" placeholder="성별"></div>
+				                    	<div class="col-sm-5">
+				                    	<select class="form-control select2 w-p100" name="gender">
+				                    		<c:if test="${dto.gender == 'F' }">
+				                    		<option value="M">남성</option>
+				                    		<option value="F" selected="selected">여성</option>
+				                    		<option value="X">기타</option>
+				                    		</c:if>
+				                    		<c:if test="${dto.gender == 'M' }">
+				                    		<option value="M" selected="selected">남성</option>
+				                    		<option value="F">여성</option>
+				                    		<option value="X">기타</option>
+				                    		</c:if>
+				                    	</select>
+				                    	</div>
 				                    </div>
-				                    </c:if>
-				                    <c:if test="${dto.gender == 'M' }">
-				                    	<div class="form-group row"><label class="col-sm-2 col-form-label">성별</label>
-				                      	<div class="col-sm-5"><input class="form-control" type="text" value="남성" name="gender" placeholder="성별"></div>
-				                    </div>
-				                    </c:if>
 				                    <div class="form-group row"><label class="col-sm-2 col-form-label">전화번호</label>
 				                      <div class="col-sm-5"><input class="form-control" type="text" value="${dto.tel }" name="tel" placeholder="전화번호"></div>
 				                    </div>
 				                    <div class="form-group row"><label class="col-sm-2 col-form-label">주소</label>
-				                      <div class="col-sm-5"><input class="form-control" type="text" value="${dto.address }" name="address" placeholder="주소"></div>
+				                      <div class="col-sm-5">
+				                      			<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" 
+				                      			value="${requestScope.addr[0] }">
+    											<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
+    											<span id="guide" style="color:#999;display:none;"></span>            
+    											<input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr2" id="addr2" type="text" readonly="readonly" 
+    											value="${requestScope.addr[1] }">
+												<input class="form-control" type="text" name="addr3" id="addr3"
+													placeholder="멤버 상세 주소 입력"
+													value="${requestScope.addr[2] }">
+				                    </div>
 				                    </div>
 				                    
 				                    <div class="form-group row"><label class="col-sm-2 col-form-label"></label>

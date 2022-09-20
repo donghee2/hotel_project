@@ -109,6 +109,8 @@
 	<script src="../admin_resource/js/pages/dashboard-chart.js"></script>
 	<!-- Crypto_Admin for demo purposes -->
 	<script src="../admin_resource/js/demo.js"></script>
+	<!-- 우편 번호 주소 API -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
 	$(function(){
 		var title = '${title }';
@@ -142,6 +144,21 @@
 			$("a[href^='selectAllMember.do']").parent().parent().parent().addClass("active");
 		}
 		
+		else if(title == "전체 객실 관리"){
+			$("a[href^='selectAllRoom.do']").parent().addClass("active");
+			$("a[href^='selectAllRoom.do']").parent().parent().parent().addClass("active");
+		}
+		
+		else if(title == "객실 등록"){
+			$("a[href^='insertRoomView.do']").parent().addClass("active");
+			$("a[href^='insertRoomView.do']").parent().parent().parent().addClass("active");
+		}
+		
+		else if(title == "옵션 관리"){
+			$("a[href^='setOptionView.do']").parent().addClass("active");
+			$("a[href^='setOptionView.do']").parent().parent().parent().addClass("active");
+		}
+		
 		/* 
 		$(".htl").text($(".htl").text().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
 		 */
@@ -150,7 +167,6 @@
 		$("input[type='tel']").keyup(function(){
 			$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
 		});
-		
 		
 		$('.hotelfrm').submit(function (e) {
 			if($("input[name='hotelNo']").val().length < 2)
@@ -227,7 +243,6 @@
 		});
 		
 		
-		
 	});
 	
 	function execPostCode() {
@@ -277,7 +292,33 @@
 		$("input[name=hotelDetailManual]").val("dtest");
 		$("input[type='tel']").val( $("input[type='tel']").val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
 	}
-
+	
+	$(".hotelfrm").submit(function(){
+		var option = "";
+		$("input:checked").each(function(){
+			option += $(this).val() + "/";
+		})
+		console.log(option);
+		$("input[name='optionName']").val(option);
+	});
+	
+	$(document).on("click",".delete-btn",function(){
+		if(!confirm("정말로 해당 옵션 정보를 삭제하시겠습니까?"))
+			return;
+		
+    	var d = "optionName=" + $(this).parent().parent().find(".text-uppercase").html();
+    		console.log(d);
+    		
+    	$.ajax({
+			url:"deleteOption.do",
+			data : d,
+			success:function(r){
+				if(r==1)
+				location.replace("setOptionView.do");
+			}
+		});
+    	
+    });
 </script>
 	
 	
