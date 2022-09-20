@@ -33,7 +33,7 @@
 											<li class="active"><a href="index.html">호텔소개</a>
 											<ul>
 													<li><a href="hotelDetailView.do">호텔지점소개</a></li>
-													<li><a href="index-2.html">객실정보</a></li>
+													<li><a href="roomDetailView.do">객실정보</a></li>
 												</ul></li>
 											<li><a href="#">다이닝</a>
 											<ul>

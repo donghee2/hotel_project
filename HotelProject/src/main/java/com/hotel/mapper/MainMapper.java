@@ -14,5 +14,7 @@ public interface MainMapper {
 	List<RoomDTO> selectMainView();
 	// 호텔 소개 페이지
 	List<HotelDTO> selectHotelView();
+	// 객실 정보 페이지
+	List<RoomDTO> selectRoomView();
 
 }

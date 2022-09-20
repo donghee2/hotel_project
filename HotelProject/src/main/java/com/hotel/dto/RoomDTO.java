@@ -11,10 +11,24 @@ public class RoomDTO {
 	private String roomdetailmanual;
 	private String roomimagepath;
 	private int price;
+	private String hotelname;
 
 	public RoomDTO() {
 	}
 	
+	
+	
+	public String getHotelname() {
+		return hotelname;
+	}
+
+
+
+	public void setHotelname(String hotelname) {
+		this.hotelname = hotelname;
+	}
+
+
 
 	public String getRoomimagepath() {
 		return roomimagepath;

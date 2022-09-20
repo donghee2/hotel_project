@@ -35,4 +35,15 @@ public class MainController {
 		model.addAttribute("hotellist", hotellist);
 		return "hotel_detail_view";
 	}
+	
+	@RequestMapping("/roomDetailView.do")
+	public String roomDetailView(Model model) {
+		List<RoomDTO> roomlist = mainservice.selectRoomView();
+		List<HotelDTO> hotellist = mainservice.selectHotelView();
+		System.out.println(roomlist);
+		System.out.println(hotellist);
+		model.addAttribute("roomlist", roomlist);
+		model.addAttribute("hotellist", hotellist);
+		return "room_detail_view";
+	}
 }

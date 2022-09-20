@@ -37,7 +37,7 @@ public class BookingController {
 //		String email = (String) session.getAttribute("email"); 
 		List<BookingDTO> roomlist = bookingservice.selectBookingView(roomNo);
 		
-//		System.out.println(roomlist.toString());
+		System.out.println(roomlist.toString());
 		model.addAttribute("roomlist", roomlist);
 		return "dh/booking";
 	}

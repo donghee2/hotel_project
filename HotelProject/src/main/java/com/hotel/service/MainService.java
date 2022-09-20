@@ -24,6 +24,10 @@ public class MainService {
 	public List<HotelDTO> selectHotelView() {
 		return mainmapper.selectHotelView();
 	}
+
+	public List<RoomDTO> selectRoomView() {
+		return mainmapper.selectRoomView();
+	}
 	
 	
 }

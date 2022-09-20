@@ -11,6 +11,11 @@
 	<select id="selectHotelView" resultType="hotel">
 		select * from hotel
 	</select>
+	
+	<select id="selectRoomView" resultType="room">
+		select r.roomno, r.roomtype, h.hotelname, r.roomsimplemanual, r.price, ri.roomimagepath
+		from room r, roomimage ri, hotel h where r.roomno = ri.roomno and r.hotelno = h.hotelno
+	</select>
 </mapper>
 
 
