@@ -30,7 +30,7 @@
 			<div class="row">
 				<!-- Single Room Start -->
 				<c:forEach var="room" items="${requestScope.mainlist }">
-				<input type="hidden" name="roomno" value="${room.roomno }">
+				<input type="hidden" name="roomno" value="${room.roomNo }">
 				<div class="col-md-4 col-sm-6">
 					<div class="room-list-inner">
 						<div class="room-list-img">

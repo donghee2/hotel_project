@@ -2,6 +2,7 @@ package com.hotel.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
+//-------------------------------------------------김유나-----------------------------------------------------------
+	
 	public void insertMember(JoinRequest join) {
 		MemberDTO memberDTO = new MemberDTO(join.getEmail(), join.getName(), join.getPassword(), join.getGender(),
 											join.getBirth(), join.getTel(), join.getAddress());
@@ -26,6 +29,10 @@ public class MemberService {
 		return memberMapper.matchMember(loginRequest.getEmail(), loginRequest.getPassword());
 	}
 
+//-------------------------------------------------김유나-----------------------------------------------------------
+
+//-------------------------------------------------이동희-----------------------------------------------------------
+	
 	public List<MemberDTO> selectMemberId(String memberName, String tel) {
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("memberName", memberName);
@@ -48,4 +55,33 @@ public class MemberService {
 		map.put("password", password);
 		return memberMapper.updatePasswd(map);
 	}
+	
+//-------------------------------------------------이동희-----------------------------------------------------------
+	
+//-------------------------------------------------박은수-----------------------------------------------------------
+	
+	public List<MemberDTO> selectAllMember() {
+		return memberMapper.selectAllMember();
+	}
+
+	public int deleteMember(String email) {
+		return memberMapper.deleteMember(email);
+	}
+
+	public int updateMember(MemberDTO dto) {
+		return memberMapper.updateMember(dto);
+	}
+
+	public List<MemberDTO> searchMember(String kind, String search) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("kind", kind);
+		map.put("search", search);
+		return memberMapper.searchMember(map);
+	}
+
+	public MemberDTO selectMember(String email) {
+		return memberMapper.selectMember(email);
+	}
+
+//-------------------------------------------------박은수-----------------------------------------------------------
 }

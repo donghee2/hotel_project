@@ -1,12 +1,11 @@
 package com.hotel.model;
 
-import java.time.LocalDate;
 
 public class JoinRequest {
 	private String email;
 	private String password;
 	private String name;
-	private LocalDate birth;
+	private String birth;
 	private String gender;
 	private String tel;
 	private String address;
@@ -29,10 +28,10 @@ public class JoinRequest {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public LocalDate getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(LocalDate birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	public String getGender() {

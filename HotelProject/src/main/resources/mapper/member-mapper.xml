@@ -26,6 +26,41 @@
 	<update id="updatePasswd" parameterType="map">
 		update member set pass = #{password} where email = #{email}
 	</update>
+	
+	<select id="selectAllMember" resultType="member">
+		select email, pass as password, membername as memberName, 
+		gender, birth, membertel as tel, memberaddress as address from member
+	</select>
+	
+	<delete id="deleteMember" parameterType="String">
+		delete from member where email = #{email}
+	</delete>
+	
+	<update id="updateMember" parameterType="member">
+		update member set pass = #{password}, membername = #{memberName}, birth = #{birth},
+		gender = #{gender}, membertel = #{tel}, memberaddress = #{address} where email = #{email}
+	</update>
+	
+	<select id="searchMember" parameterType="map" resultType="member">
+		select email, pass as password, membername as memberName, 
+		gender, birth, membertel as tel, memberaddress as address from member
+		where
+		<choose>
+			<when test="kind.equals('email')">
+				email like '%' || #{search} || '%'
+			</when>
+			<when test="kind.equals('name')">
+				membername like '%' || #{search} || '%'
+			</when>
+			<otherwise>
+				membertel like '%' || #{search} || '%'
+			</otherwise>
+		</choose>
+	</select>
+	<select id="selectMember" parameterType="String" resultType="member">
+		select email, pass as password, membername as memberName, 
+		gender, birth, membertel as tel, memberaddress as address from member where email = #{email}
+	</select>
 </mapper>
 
 

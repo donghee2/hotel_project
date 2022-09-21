@@ -2,6 +2,7 @@ package com.hotel.mapper;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,4 +19,10 @@ public interface MemberMapper {
 	List<MemberDTO> selectMemberPass(HashMap<Object, Object> map);
 	// 비밀번호 변경
 	int updatePasswd(HashMap<Object, Object> map);
+	
+	List<MemberDTO> selectAllMember();
+	int deleteMember(String email);
+	int updateMember(MemberDTO dto);
+	List<MemberDTO> searchMember(Map<String, Object> map);
+	MemberDTO selectMember(String email);
 }

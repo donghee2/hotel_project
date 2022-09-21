@@ -1,60 +1,138 @@
 package com.hotel.dto;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("room")
 public class RoomDTO {
-	private String roomno;
-	private String hotelno;
+	private String roomNo;
+	private String hotelNo;
+	private String hotelName;
 	private String roomtype;
 	private String roomsimplemanual;
 	private String roomdetailmanual;
-	private String roomimagepath;
+	private String roomImage;
 	private int price;
-	private String hotelname;
+	private List<RoomDTO> optionlist;
+	private List<RoomDTO> hotellist;
+	private String optionName;
+	private String optionPath;
 
 	public RoomDTO() {
 	}
 	
 	
 	
-	public String getHotelname() {
-		return hotelname;
+	public String getHotelNo() {
+		return hotelNo;
 	}
 
 
 
-	public void setHotelname(String hotelname) {
-		this.hotelname = hotelname;
+	public void setHotelNo(String hotelNo) {
+		this.hotelNo = hotelNo;
 	}
 
 
 
-	public String getRoomimagepath() {
-		return roomimagepath;
-	}
-
-
-	public void setRoomimagepath(String roomimagepath) {
-		this.roomimagepath = roomimagepath;
+	public String getHotelName() {
+		return hotelName;
 	}
 
 
 
-	public String getRoomno() {
-		return roomno;
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
 	}
 
-	public void setRoomno(String roomno) {
-		this.roomno = roomno;
+
+
+	public List<RoomDTO> getOptionlist() {
+		return optionlist;
 	}
 
-	public String getHotelno() {
-		return hotelno;
+
+
+	public void setOptionlist(List<RoomDTO> optionlist) {
+		this.optionlist = optionlist;
 	}
 
-	public void setHotelno(String hotelno) {
-		this.hotelno = hotelno;
+
+
+	public List<RoomDTO> getHotellist() {
+		return hotellist;
+	}
+
+
+
+	public void setHotellist(List<RoomDTO> hotellist) {
+		this.hotellist = hotellist;
+	}
+
+
+
+	public String getOptionName() {
+		return optionName;
+	}
+
+
+
+	public void setOptionName(String optionName) {
+		this.optionName = optionName;
+	}
+
+
+
+	public String getOptionPath() {
+		return optionPath;
+	}
+
+
+
+	public void setOptionPath(String optionPath) {
+		this.optionPath = optionPath;
+	}
+
+
+
+	public String gethotelName() {
+		return hotelName;
+	}
+
+
+
+	public void sethotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
+
+
+
+	public String getRoomImage() {
+		return roomImage;
+	}
+
+
+	public void setRoomImage(String roomImage) {
+		this.roomImage = roomImage;
+	}
+
+
+
+	public String getroomNo() {
+		return roomNo;
+	}
+
+	public void setroomNo(String roomNo) {
+		this.roomNo = roomNo;
+	}
+
+	public String gethotelNo() {
+		return hotelNo;
+	}
+
+	public void sethotelNo(String hotelNo) {
+		this.hotelNo = hotelNo;
 	}
 
 	public String getRoomtype() {
@@ -99,9 +177,9 @@ public class RoomDTO {
 
 	@Override
 	public String toString() {
-		return "RoomDTO [roomno=" + roomno + ", hotelno=" + hotelno + ", roomtype=" + roomtype + ", roomsimplemanual="
-				+ roomsimplemanual + ", roomdetailmanual=" + roomdetailmanual + ", roomimagepath=" + roomimagepath
-				+ ", price=" + price + ", hotelname=" + hotelname + "]";
+		return "RoomDTO [roomNo=" + roomNo + ", hotelNo=" + hotelNo + ", roomtype=" + roomtype + ", roomsimplemanual="
+				+ roomsimplemanual + ", roomdetailmanual=" + roomdetailmanual + ", roomImage=" + roomImage
+				+ ", price=" + price + ", hotelName=" + hotelName + "]";
 	}
 
 

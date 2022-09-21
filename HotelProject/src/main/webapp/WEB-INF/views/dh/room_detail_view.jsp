@@ -64,9 +64,9 @@
 			</div>
 			<div class="row special-list">
 				<c:forEach var="room" items="${requestScope.roomlist }">
-				<div class="col-lg-4 col-md-6 special-grid ${room.hotelname }">
+				<div class="col-lg-4 col-md-6 special-grid ${room.hotelName }">
 					<div class="gallery-single fix">
-						<img src="${room.roomimagepath }" class="img-fluid" alt="Image">
+						<img src="${room.roomImage }" class="img-fluid" alt="Image">
 						<div class="why-text">
 							<h4>${room.roomtype }</h4>
 							<p>${room.roomsimplemanual }</p>

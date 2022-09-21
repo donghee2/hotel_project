@@ -14,7 +14,7 @@
 </head>
 <body>
 	<input type="text" name="checkInOut" style="width: 200px;">
-								<script>
+								i<script>
 									$('input[name="checkInOut"]').daterangepicker();
 								</script>
 </body>

@@ -11,9 +11,24 @@ public class HotelDTO {
 	private String hotelImage;
 	private String hotelSimpleManual;
 	private String hotelDetailManual;
+	private int hotelAllRoomEA;
 
 	public HotelDTO() {
 	}
+	
+	
+
+	public int getHotelAllRoomEA() {
+		return hotelAllRoomEA;
+	}
+
+
+
+	public void setHotelAllRoomEA(int hotelAllRoomEA) {
+		this.hotelAllRoomEA = hotelAllRoomEA;
+	}
+
+
 
 	public String getHotelNo() {
 		return hotelNo;
