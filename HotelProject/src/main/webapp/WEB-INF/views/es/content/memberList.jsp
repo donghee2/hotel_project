@@ -58,9 +58,6 @@
 									<tbody>
 										<c:forEach var="member" items="${requestScope.list }">
 											<tr>
-												<td class="w-20"><i class="fa fa-square-o pt-15"></i></td>
-												<td class="w-20"><i
-													class="fa fa-star text-yellow pt-15"></i></td>
 												<td class="w-60"><a
 													class="avatar avatar-lg status-success" href="#"><img
 														src="../admin_resource/images/avatar/1.jpg" alt="..." /></a>
@@ -75,7 +72,7 @@
 												<td>
 													<nav class="nav mt-1 btn-array">
 														<a href="memberProfile.do?email=${member.email }" class="member-detail btn btn-warning btn-sm text-white">회원 상세 보기</a>
-														<a class="member_delete btn btn-warning btn-sm text-white">계정 정보 삭제</a>
+														<a class="member_delete btn delete btn-sm text-white">계정 정보 삭제</a>
 													</nav>
 												</td>
 											</tr>

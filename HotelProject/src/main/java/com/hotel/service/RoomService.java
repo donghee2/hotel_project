@@ -85,6 +85,10 @@ public class RoomService {
 		return roommapper.setOption(map);
 	}
 
+	public int deleteRoom(String roomNo) {
+		return roommapper.deleteRoom(roomNo);
+	}
+
 	
 	
 	

@@ -37,7 +37,10 @@
 	body{
 		min-width: 1800px;
 		overflow: auto;
-	
+	}
+	.delete{
+		background-color: #ef5350;
+		color: white;
 	}
 </style>
 </head>
@@ -111,6 +114,10 @@
 	<script src="../admin_resource/js/demo.js"></script>
 	<!-- 우편 번호 주소 API -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
+	<!-- chart js -->
+	<script src="../admin_resource/js/pages/widget-morris-charts.js"></script>
+	
 	<script type="text/javascript">
 	$(function(){
 		var title = '${title }';
@@ -157,6 +164,21 @@
 		else if(title == "옵션 관리"){
 			$("a[href^='setOptionView.do']").parent().addClass("active");
 			$("a[href^='setOptionView.do']").parent().parent().parent().addClass("active");
+		}
+		
+		else if(title == "전체 식당 관리"){
+			$("a[href^='selectAllRestaurant.do']").parent().addClass("active");
+			$("a[href^='selectAllRestaurant.do']").parent().parent().parent().addClass("active");
+		}
+		
+		else if(title == "식당 수정"){
+			$("a[href^='selectAllRestaurant.do']").parent().addClass("active");
+			$("a[href^='selectAllRestaurant.do']").parent().parent().parent().addClass("active");
+		}
+		
+		else if(title == "식당 등록"){
+			$("a[href^='insertRestaurantView.do']").parent().addClass("active");
+			$("a[href^='insertRestaurantView.do']").parent().parent().parent().addClass("active");
 		}
 		
 		/* 
@@ -318,6 +340,40 @@
 			}
 		});
     	
+    });
+	
+	$(document).on("click",".delete-room",function(){
+		if(!confirm("정말로 해당 객실을 삭제하시겠습니까?"))
+			return;
+		
+    	var d = "roomNo=" + $(this).parent().parent().children().first().html();
+    		console.log(d);
+    		
+    	$.ajax({
+			url:"deleteRoom.do",
+			data : d,
+			success:function(r){
+				if(r==1)
+				location.replace("selectAllRoom.do");
+			}
+		});
+    });
+	
+	$(document).on("click",".delete-restaurant",function(){
+		if(!confirm("정말로 해당 객실을 삭제하시겠습니까?"))
+			return;
+		
+    	var d = "roomNo=" + $(this).parent().parent().children().first().html();
+    		console.log(d);
+    		
+    	$.ajax({
+			url:"deleteRestaurant.do",
+			data : d,
+			success:function(r){
+				if(r==1)
+				location.replace("selectAllRestaurant.do");
+			}
+		});
     });
 </script>
 	

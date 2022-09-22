@@ -20,7 +20,7 @@
 					<li class="breadcrumb-item"><a href="admin.do"><i
 							class="fa fa-dashboard"></i>Main</a></li>
 					<li class="breadcrumb-item"><a href="#">호텔 관리</a></li>
-					<li class="breadcrumb-item active"><a href="insertHotelView.do">호텔 지점 등록</a></li>
+					<li class="breadcrumb-item active"><a href="#">호텔 지점 수정</a></li>
 				</ol>
 			</section>
 			<!-- Main content -->

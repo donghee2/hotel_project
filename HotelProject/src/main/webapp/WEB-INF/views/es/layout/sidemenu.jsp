@@ -41,49 +41,33 @@
 							class="pull-right-container"><i
 								class="fa fa-angle-right pull-right"></i></span></a></li>
 					<li class="header nav-small-cap">HOTEL</li>
-					<li class="treeview"><a href="#"><i class="icon-chart"></i><span>호텔 관리</span><span
+					<li class="treeview"><a href="#"><i class="fa fa-fw fa-hospital-o"></i><span>호텔 관리</span><span
 							class="pull-right-container"><i
 								class="fa fa-angle-right pull-right"></i></span></a>
 					<ul class="treeview-menu">
 							<li><a href="selectAllHotel.do">전체 지점 관리</a></li>
 							<li><a href="insertHotelView.do">호텔 지점 등록</a></li>
 						</ul></li>
-					<li class="treeview"><a href="#"><i class="icon-compass"></i><span>객실 관리</span><span class="pull-right-container"><i
+					<li class="treeview"><a href="#"><i class="fa fa-hotel"></i><span>객실 관리</span><span class="pull-right-container"><i
 								class="fa fa-angle-right pull-right"></i></span></a>
 					<ul class="treeview-menu">
 							<li><a href="selectAllRoom.do">전체 객실 관리</a></li>
 							<li><a href="insertRoomView.do">객실 등록</a></li>
 							<li><a href="setOptionView.do">옵션 관리</a></li>
 						</ul></li>
+					<li class="treeview"><a href="#"><i class="fa fa-cutlery"></i><span>식당 관리</span><span class="pull-right-container"><i
+								class="fa fa-angle-right pull-right"></i></span></a>
+					<ul class="treeview-menu">
+							<li><a href="selectAllRestaurant.do">전체 식당 관리</a></li>
+							<li><a href="insertRestaurantView.do">식당 등록</a></li>
+						</ul></li>
 					
 										<li class="header nav-small-cap">MEMBER</li>
-					<li class="treeview"><a href="#"><i class="icon-map"></i><span>회원 관리</span><span
+					<li class="treeview"><a href="#"><i class="fa fa-user-circle"></i><span>회원 관리</span><span
 							class="pull-right-container"><i
 								class="fa fa-angle-right pull-right"></i></span></a>
 					<ul class="treeview-menu">
 							<li><a href="selectAllMember.do">전체 회원 관리</a></li>
-						</ul></li>
-					
-					
-					<li class="treeview"><a href="#"><i class="icon-menu"></i><span>임시 메뉴</span><span
-							class="pull-right-container"><i
-								class="fa fa-angle-right pull-right"></i></span></a>
-					<ul class="treeview-menu">
-							<li><a href="#">더미 메뉴</a></li>
-							<li class="treeview"><a href="#">Level One<span
-									class="pull-right-container"><i
-										class="fa fa-angle-right pull-right"></i></span></a>
-							<ul class="treeview-menu">
-									<li><a href="#">Level Two</a></li>
-									<li class="treeview"><a href="#">Level Two<span
-											class="pull-right-container"><i
-												class="fa fa-angle-right pull-right"></i></span></a>
-									<ul class="treeview-menu">
-											<li><a href="#">Level Three</a></li>
-											<li><a href="#">Level Three</a></li>
-										</ul></li>
-								</ul></li>
-							<li><a href="#">Level One</a></li>
 						</ul></li>
 				</ul>
 			</section>

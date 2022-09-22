@@ -66,13 +66,10 @@
 													<a href="updateHotelView.do?hotelNo=${h.hotelNo }"
 													class="btn btn-warning btn-sm mx-auto">수정하기</a>
 													<a href="deleteHotel.do?hotelNo=${h.hotelNo }"
-													class="btn btn-warning btn-sm mx-auto">삭제하기</a>
+													class="btn delete btn-sm mx-auto">삭제하기</a>
 													</td>
 											</tr>
 										</c:forEach>
-										<tr>
-										<td class="text-center" colspan="8"><a href="insertHotelView.do" class="btn btn-warning btn-lg mx-auto">호텔 추가하기</a></td>
-										</tr>
 									</tbody>
 								</table>
 							</div>

@@ -67,6 +67,10 @@
 		insert into roomoptionimage (optionname, optionpath) values(#{optionName}, #{optionPath})
 	</insert>
 	
+	<delete id="deleteRoom" parameterType="String">
+		delete from room where roomno = #{roomNo}
+	</delete>
+	
 </mapper>
 
 

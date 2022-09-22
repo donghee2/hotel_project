@@ -40,4 +40,6 @@ public interface RoomMapper {
 
 	int setOption(Map<String, String> map);
 
+	int deleteRoom(String roomNo);
+
 }

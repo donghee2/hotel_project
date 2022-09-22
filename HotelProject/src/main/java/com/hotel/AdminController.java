@@ -21,10 +21,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.hotel.dto.HotelDTO;
 import com.hotel.dto.MemberDTO;
 import com.hotel.dto.QnADTO;
+import com.hotel.dto.RestaurantDTO;
 import com.hotel.dto.RoomDTO;
 import com.hotel.service.HotelService;
 import com.hotel.service.MemberService;
 import com.hotel.service.QnAService;
+import com.hotel.service.RestaurantService;
 import com.hotel.service.RoomService;
 import com.hotel.vo.PaggingVO;
 
@@ -34,14 +36,15 @@ public class AdminController {
 	private RoomService roomservice;
 	private MemberService memberservice;
 	private QnAService qnaservice;
+	private RestaurantService restaurantservice;
 	
 	public AdminController(HotelService hotelservice, RoomService roomservice, MemberService memberservice,
-			QnAService qnaservice ) {
-		super();
+			QnAService qnaservice, RestaurantService restaurantservice) {
 		this.hotelservice = hotelservice;
 		this.roomservice = roomservice;
 		this.memberservice = memberservice;
 		this.qnaservice = qnaservice;
+		this.restaurantservice = restaurantservice;
 	}
 
 	@RequestMapping("/admin.do")
@@ -498,7 +501,143 @@ public class AdminController {
 		return ResponseEntity.ok(result);
 	}
 	
+	//------------------------------------------------------------------------
 	
+	@RequestMapping("/deleteRoom.do")
+	public void deleteRoom(String roomNo, HttpServletResponse response) throws IOException {
+		int result = roomservice.deleteRoom(roomNo);
+		response.getWriter().write(String.valueOf(result));
+	}
+	
+	@RequestMapping("/selectAllRestaurant.do")
+	public String selectAllRestaurant(Model model) {
+		List<RestaurantDTO> list = restaurantservice.selectAllRestaurant();
+		
+		model.addAttribute("title", "전체 식당 관리");
+		model.addAttribute("page", "allRestaurantView.jsp" );
+		model.addAttribute("list", list);
+		
+		return "es/admin_main";
+	}
+	
+	@RequestMapping("/deleteRestaurant.do")
+	public void deleteRestaurant(String restaurantNo, HttpServletResponse response) throws IOException {
+		int result = restaurantservice.deleteRestaurant(restaurantNo);
+		response.getWriter().write(String.valueOf(result));
+	}
+	
+	@RequestMapping("/updateRestaurantView.do")
+	public String updateRestaurantView(String restaurantNo, Model model) {
+		
+		RestaurantDTO dto = restaurantservice.selectOneRestaurant(restaurantNo);
+		List<RoomDTO> hotellist = roomservice.selectHotelList();
+		List<RestaurantDTO> typelist = restaurantservice.selectTypeList();
+		
+		model.addAttribute("typelist", typelist);
+		model.addAttribute("hotellist", hotellist);
+		model.addAttribute("title", "전체 식당 관리");
+		model.addAttribute("page", "updateRestaurantView.jsp");
+		model.addAttribute("dto", dto);
+		
+		return "es/admin_main";
+	}
+	
+	@RequestMapping("/updateRestaurant.do")
+	public String updateRestaurant(RestaurantDTO dto, Model model, MultipartHttpServletRequest request) throws IOException {
+		System.out.println("updateRestaurant test : " + dto.getHotelNo());
+		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
+
+		File userRoot = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\");
+		String encoding = "utf-8";
+		
+		if(!userRoot.exists())
+			userRoot.mkdirs();
+		
+		List<MultipartFile> filelist = request.getFiles("file");
+		int i = 1;
+		for(MultipartFile f : filelist) {
+			String originalFileName = f.getOriginalFilename();
+			if(f.getSize() == 0) continue;
+			File uploadFile = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\" + "\\" +originalFileName);
+			System.out.println(originalFileName);
+			dto.setRestaurantImagepath(dto.getRestaurantImagepath()+ originalFileName);
+			i++;
+			try {
+				//실제로 전송
+				f.transferTo(uploadFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
+			
+		String[] data = dto.getHotelNo().split(",");
+		dto.setHotelNo(data[0]);
+		dto.setHotelName(data[1]);
+		System.out.println("update test : ");
+		System.out.println(dto.toString());
+			
+		int result = restaurantservice.updateRestaurant(dto);
+		System.out.println(result);
+
+		return "redirect:/selectAllRestaurant.do";
+	}
+	
+	@RequestMapping("/insertRestaurantView.do")
+	public String insertRestaurantView(Model model) {
+		List<RoomDTO> hotellist = roomservice.selectHotelList();
+		List<RestaurantDTO> typelist = restaurantservice.selectTypeList();
+		
+		model.addAttribute("hotellist", hotellist);
+		model.addAttribute("typelist", typelist);
+		model.addAttribute("title", "식당 등록");
+		model.addAttribute("page", "insertRestaurantView.jsp" );
+		
+		return "es/admin_main";
+	}
+	
+	@RequestMapping("/insertRestaurant.do")
+	public String insertRestaurantView(RestaurantDTO dto, Model model, MultipartHttpServletRequest request) throws IOException {
+		System.out.println("updateRestaurant test : " + dto.getHotelNo());
+		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
+
+		File userRoot = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\");
+		String encoding = "utf-8";
+		
+		if(!userRoot.exists())
+			userRoot.mkdirs();
+		
+		List<MultipartFile> filelist = request.getFiles("file");
+		int i = 1;
+		for(MultipartFile f : filelist) {
+			String originalFileName = f.getOriginalFilename();
+			if(f.getSize() == 0) continue;
+			File uploadFile = new File("C:\\Hotel\\hotel_project\\HotelProject\\src\\main\\webapp\\admin_resource\\images\\" + "\\" +originalFileName);
+			System.out.println(originalFileName);
+			dto.setRestaurantImagepath(dto.getRestaurantImagepath()+ originalFileName);
+			i++;
+			try {
+				//실제로 전송
+				f.transferTo(uploadFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		/////////////////////////////// 파일 업로드 부 ////////////////////////////////
+		String[] data = dto.getHotelNo().split(",");
+		dto.setHotelNo(data[0]);
+		dto.setHotelName(data[1]);
+		System.out.println(dto.toString());
+			
+		int result = restaurantservice.insertRestaurant(dto);
+		System.out.println(result);
+
+		return "redirect:/selectAllRestaurant.do";
+	}
 }
 
 
