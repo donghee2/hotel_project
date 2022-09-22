@@ -22,7 +22,12 @@ public class BookingDTO {
 	public BookingDTO() {
 	}
 	
-	
+	public BookingDTO(String checkIn, String checkOut, String hotelNo) {
+		super();
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.hotelNo = hotelNo;
+	}
 	
 	public BookingDTO(String email, int price, String roomType, String roomsimplemanual, String roomdetailmanual,
 			String roomimagepath) {

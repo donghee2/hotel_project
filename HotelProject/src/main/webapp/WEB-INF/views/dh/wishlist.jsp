@@ -88,7 +88,7 @@
 									<a href="#">${wishlist.roomType }</a>
 								</h2>
 								<p>${wishlist.roomsimplemanual }</p>
-								<a href="bookingView.do?roomNo=${wishlist.roomNo }" class="rdmoreBtn">예약하기<i
+								<a href="bookingView.do?roomNo=${wishlist.roomNo }&hotelNo=${wishlist.hotelNo}" class="rdmoreBtn">예약하기<i
 									class="icofont-long-arrow-right"></i></a>
 							</div>
 						</div>

@@ -8,7 +8,7 @@
 	</insert>
 	
 	<select id="selectWishlistView" parameterType="String" resultType="booking">
-		select r.roomno, r.hotelno ,wl.wishlistno, r.roomtype, r.roomsimplemanual, r.price, ri.roomimagepath
+		select r.roomno, r.hotelno ,wl.wishlistno, wl.hotelno, r.roomtype, r.roomsimplemanual, r.price, ri.roomimagepath
 		from room r, wishlist wl, roomimage ri
 		where r.roomno = wl.roomno and r.roomno = ri.roomno and wl.email = #{email}
 	</select>
@@ -18,6 +18,22 @@
 		from room r, wishlist wl, roomimage ri 
 		where r.roomno = wl.roomno and r.roomno = ri.roomno and wl.roomno = #{roomno}
 	</select>
+	<select id="selectHotel" resultType="hotel">
+		select hotelno, hotelname,
+		hoteladdress from hotel
+	</select>
+	<select id="searchRoom" parameterType="booking" resultType="booking">
+		select ro.*, h.hotelname, (select ri.roomimagepath from
+		roomimage ri where ro.roomno = ri.roomno) as roomimagepath
+		from hotel h, room ro where h.hotelno = ro.hotelno and ro.hotelno = #{hotelNo}
+		and ro.roomno not in( select distinct r.roomno from room r, roombooking rb 
+		where r.roomno = rb.roomno and r.hotelno = #{hotelNo}
+		and (to_date(#{checkIn}, 'mm/dd/yyyy') between rb.checkin and rb.checkout or to_date(#{checkOut}, 'mm/dd/yyyy') between
+		rb.checkin and rb.checkout))
+	</select>
+	<insert id="insertWishlist" parameterType="booking">
+		insert into wishlist values(wishlist_no.nextval, #{email}, #{roomNo}, #{hotelNo})
+	</insert>
 </mapper>
 
 

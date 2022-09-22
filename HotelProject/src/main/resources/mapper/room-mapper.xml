@@ -5,7 +5,7 @@
 <mapper namespace="com.hotel.mapper.RoomMapper">
 	
 	<select id="selectAllRoom" resultType="room">
-		select r.*, (select roomimage from roomimage ri where r.roomno = ri.roomno ) as roomImage from room r
+		select r.*, (select roomimagepath from roomimage ri where r.roomno = ri.roomno ) as roomImage from room r
 	</select>
 	
 	<select id="selectRoomOption" parameterType="String" resultType="room">

@@ -30,7 +30,7 @@
 								<div class="menu">
 									<nav id="main-menu" class="main-menu">
 										<ul>
-											<li class="active"><a href="index.html">호텔소개</a>
+											<li class="active"><a href="hotelDetailView.do">호텔소개</a>
 											<ul>
 													<li><a href="hotelDetailView.do">호텔지점소개</a></li>
 													<li><a href="roomDetailView.do">객실정보</a></li>
@@ -40,7 +40,7 @@
 													<li><a href="about.html">조식 예약하기</a></li>
 													<li><a href="event.html">레스토랑 예약하기</a></li>
 											</ul></li>
-											<li><a href="room.html">예약하기</a>
+											<li><a href="searchRoom.do">예약하기</a>
 											</li>
 											<li><a href="wishlist.do">위시리스트</a></li>
 											<li><a href="inquiry-form">문의하기</a></li>

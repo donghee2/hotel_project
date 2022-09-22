@@ -48,7 +48,7 @@
 							</h2>
 							<p>${room.roomsimplemanual }</p>
 							<a href="#" class="booking-btn">예약하기</a>
-							<a href="#" class="booking-btn">찜하기</a>
+							<a href="insertWishlist.do?roomNo=${room.roomNo }&hotelNo=${room.hotelNo}" class="booking-btn">찜하기</a>
 						</div>
 					</div>
 				</div>
