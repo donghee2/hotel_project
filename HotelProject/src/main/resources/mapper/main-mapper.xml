@@ -16,6 +16,22 @@
 		select r.roomno, r.roomtype, h.hotelname, r.roomsimplemanual, r.price, ri.roomimagepath as roomImage
 		from room r, roomimage ri, hotel h where r.roomno = ri.roomno and r.hotelno = h.hotelno
 	</select>
+	
+	<select id="selectRestaurantView" resultType="restaurant">
+	select rs.hotelname, rs.restaurantimagepath, rs.restaurantno, rt.restauranttype, rs.restaurantprice
+	from restaurant rs, restauranttype rt, hotel h
+	where h.hotelno = rs.hotelno and rs.restauranttypeno = rt.restauranttypeno
+	</select>
+	
+	<insert id="insertresbookingInfo" parameterType="restaurant">
+		insert into restaurantbooking values(RESBOOK_SEQ.nextval, #{restaurantNo}, #{hotelNo},
+		 #{mealType}, sysdate, to_date(#{bookingDate}, 'mmddyyyy'), #{restaurantPrice}, #{email}, #{personCount})
+	</insert>
+	
+	<select id="selectRestaurantType" parameterType="String" resultType="restaurant">
+		select r.restaurantno, rt.restauranttype, r.hotelname from restaurant r, restauranttype rt
+		where r.restauranttypeno = rt.restauranttypeno and r.hotelno = #{hotelNo}
+	</select>
 </mapper>
 
 

@@ -40,4 +40,8 @@ public class QnAService {
 	public int deleteQnaResponse(String qnano) {
 		return qnamapper.deleteQnaResponse(qnano);
 	}
+
+	public void insertQna() {
+		
+	}
 }

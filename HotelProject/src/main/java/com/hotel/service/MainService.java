@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.hotel.dto.BookingDTO;
 import com.hotel.dto.HotelDTO;
+import com.hotel.dto.RestaurantDTO;
 import com.hotel.dto.RoomDTO;
 import com.hotel.mapper.MainMapper;
 
@@ -29,5 +30,15 @@ public class MainService {
 		return mainmapper.selectRoomView();
 	}
 	
+	public List<RestaurantDTO> selectRestaurantView() {
+		return mainmapper.selectRestaurantView();
+	}
 	
+	public int insertresbookingInfo(RestaurantDTO dto) {
+		return mainmapper.insertresbookingInfo(dto);
+	}
+
+	public List<RestaurantDTO> selectRestaurantType(String hotelNo) {
+		return mainmapper.selectRestaurantType(hotelNo);
+	}
 }

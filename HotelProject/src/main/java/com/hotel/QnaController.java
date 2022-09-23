@@ -5,20 +5,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class InquiryController {
+public class QnaController {
 	
-	@RequestMapping("/inquiry-form")
+	@RequestMapping("/qna-form")
 	public String form(Model model) {
 		model.addAttribute("title", "1:1문의 작성");
-		model.addAttribute("page", "inquiry/form");
+		model.addAttribute("page", "qna/form");
 
 		return "layout/template";
 	}
 	
-	@RequestMapping("/inquiry-list")
+	@RequestMapping("/qna-list")
 	public String list(Model model) {
 		model.addAttribute("title", "1:1문의 리스트");
-		model.addAttribute("page", "inquiry/list");
+		model.addAttribute("page", "qna/list");
 
 		return "layout/template";
 	}

@@ -35,11 +35,8 @@
 													<li><a href="hotelDetailView.do">호텔지점소개</a></li>
 													<li><a href="roomDetailView.do">객실정보</a></li>
 												</ul></li>
-											<li><a href="#">다이닝</a>
-											<ul>
-													<li><a href="about.html">조식 예약하기</a></li>
-													<li><a href="event.html">레스토랑 예약하기</a></li>
-											</ul></li>
+											<li><a href="diningView.do">다이닝</a>
+											</li>
 											<li><a href="searchRoom.do">예약하기</a>
 											</li>
 											<li><a href="wishlist.do">위시리스트</a></li>
