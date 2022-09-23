@@ -65,7 +65,7 @@
 												<td class="w-300">
 													<p class="mb-0">
 														<a href="memberProfile.do?email=${member.email }"><strong>${member.memberName }</strong></a>
-														<small class="sidetitle" name="sidetitle">email) ${member.email }</small>
+														<small class="sidetitle" name="sidetitle">${member.email }</small>
 													</p>
 													<p class="mb-0">tel) ${member.tel }</p>
 												</td>
@@ -95,6 +95,7 @@
 			if(!confirm("정말로 해당 회원 정보를 삭제하시겠습니까?"))
 				return;
 			var d = 'email='+$(this).parent().parent().parent().find("small.sidetitle").text();
+			console.log(d);
 			$.ajax({
 				url:"memberDelete.do",
 				data : d,

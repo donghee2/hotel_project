@@ -46,6 +46,14 @@
 		select email, pass as password, membername as memberName, 
 		gender, birth, membertel as tel, memberaddress as address from member where email = #{email}
 	</select>
+	
+	<select id="selectGenderCount" parameterType="String" resultType="int">
+		select count(m.gender) from roombooking rb, member m where rb.email = m.email and m.gender = #{gender}
+	</select>
+	
+	<select id="selectMonthCount" parameterType="map" resultType="int">
+		select count(*) from roombooking where checkin > to_date(('22/' || #{thismonth} ||'/01'), 'yy/mm/dd') and<![CDATA[checkin < to_date(('22/' || #{nextmonth} || '/01'), 'yy/mm/dd')]]> 
+	</select>
 </mapper>
 
 

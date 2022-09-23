@@ -19,6 +19,14 @@
 		text-align: center;
 		margin-right: 30px;
 	}
+	.manual{
+		max-width: 200px;
+		max-height: 100px;
+		overflow: hidden;
+		overflow:hidden;
+		white-space : nowrap;
+		text-overflow: ellipsis;
+	}
 </style>
 
 </head>
@@ -63,7 +71,7 @@
 												<td class="text-center htl">${r.restaurantType}</td>
 												<td class="text-center">${r.restaurantPrice}</td>
 												<td class="text-center"><img class="room_image" src="${r.restaurantImagepath}" alt="식당 메인 이미지"></td>
-												<td class="text-center">${r.restaurantManual}</td>
+												<td class="text-center manual">${r.restaurantManual}</td>
 												<td class="text-center">
 													<a href="updateRestaurantView.do?restaurantNo=${r.restaurantNo }"
 													class="btn btn-warning btn-sm mx-auto">수정하기</a>

@@ -116,7 +116,7 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
 	<!-- chart js -->
-	<script src="../admin_resource/js/pages/widget-morris-charts.js"></script>
+	<!-- <script src="../admin_resource/js/pages/widget-morris-charts.js"></script> -->
 	
 	<script type="text/javascript">
 	$(function(){
@@ -375,6 +375,40 @@
 			}
 		});
     });
+	
+	var a = new Morris.Area({
+	    element: "revenue-chart",
+	    resize: true,
+	    data: [
+	      { y: "2022-01", a: ${m1count}},
+	      { y: "2022-02", a: ${m2count}},
+	      { y: "2022-03", a: ${m3count}},
+	      { y: "2022-04", a: ${m4count}},
+	      { y: "2022-05", a: ${m5count}},
+	      { y: "2022-06", a: ${m6count}},
+	      { y: "2022-07", a: ${m7count}},
+	      { y: "2022-08", a: ${m8count}},
+	      { y: "2022-09", a: ${m9count}},
+	    ],
+	    xkey: "y",
+	    ykeys: ["a"],
+	    labels: ["Individual Score", "Team Score"],
+	    fillOpacity: 0.2,
+	    lineWidth: 1,
+	    lineColors: ["rgba(38,198,218,1)"],
+	    hideHover: "auto",
+	  });
+	  var c = new Morris.Donut({
+		    element: "sales-chart",
+		    resize: true,
+		    colors: ["#ef5350", "#745af2"],
+		    data: [
+		      { label: "여성", value: ${fcount}  },
+		      { label: "남성", value: ${mcount}  },
+		    ],
+		    hideHover: "auto",
+		});
+	  
 </script>
 	
 	

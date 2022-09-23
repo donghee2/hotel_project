@@ -17,4 +17,6 @@ public interface MemberMapper {
 	int updateMember(MemberDTO dto);
 	List<MemberDTO> searchMember(Map<String, Object> map);
 	MemberDTO selectMember(String email);
+	int selectGenderCount(String gender);
+	int selectMonthCount(Map<String, String> map);
 }

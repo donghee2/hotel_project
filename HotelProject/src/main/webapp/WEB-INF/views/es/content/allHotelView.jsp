@@ -10,6 +10,14 @@
 	.hotel_image{
 		width: 300px;
 	}
+	.manual{
+		max-width: 200px;
+		max-height: 100px;
+		overflow: hidden;
+		overflow:hidden;
+		white-space : nowrap;
+		text-overflow: ellipsis;
+	}
 </style>
 
 </head>
@@ -59,8 +67,8 @@
 												<td class="text-center htl">${h.hotelTel}</td>
 												<td class="text-center">${h.hotelAddress}</td>
 												<td class="text-center"><img class="hotel_image" src="${h.hotelImage}" alt="호텔 메인 이미지"></td>
-												<td class="text-center">${h.hotelSimpleManual}</td>
-												<td class="text-center">${h.hotelDetailManual}</td>
+												<td class="text-center manual">${h.hotelSimpleManual}</td>
+												<td class="text-center manual">${h.hotelDetailManual}</td>
 												<td class="text-center">${h.hotelAllRoomEA }</td>
 												<td class="text-center">
 													<a href="updateHotelView.do?hotelNo=${h.hotelNo }"

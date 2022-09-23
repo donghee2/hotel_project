@@ -19,6 +19,14 @@
 		text-align: center;
 		margin-right: 30px;
 	}
+	.manual{
+		max-width: 200px;
+		max-height: 100px;
+		overflow: hidden;
+		overflow:hidden;
+		white-space : nowrap;
+		text-overflow: ellipsis;
+	}
 </style>
 
 </head>
@@ -66,9 +74,9 @@
 													href="updateRoomView.do?roomNo=${r.roomNo }"
 													class="text-yellow hover-warning">${r.roomType}</a></td>
 												<td class="text-center">${r.price}</td>
-												<td class="text-center"><img class="room_image" src="${r.roomImage}" alt="객실 메인 이미지"></td>
-												<td class="text-center">${r.roomSimpleManual}</td>
-												<td class="text-center">${r.roomDetailManual}</td>
+												<td class="text-center image"><img class="room_image" src="${r.roomImage}" alt="객실 메인 이미지"></td>
+												<td class="text-center manual">${r.roomSimpleManual}</td>
+												<td class="text-center manual">${r.roomDetailManual}</td>
 												<td class="text-center">
 													<a href="updateRoomView.do?roomNo=${r.roomNo }"
 													class="btn btn-warning btn-sm mx-auto">수정하기</a>

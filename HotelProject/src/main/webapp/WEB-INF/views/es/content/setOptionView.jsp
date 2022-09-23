@@ -89,7 +89,7 @@
 										<div class="form-group row">
 											<label class="col-sm-2 col-form-label">Name</label>
 											<div class="col-sm-6">
-												<input class="form-control" type="text" placeholder="호텔명 입력" name="option">
+												<input class="form-control" type="text" placeholder="옵션명 입력" name="option">
 											</div>
 										</div>
 										

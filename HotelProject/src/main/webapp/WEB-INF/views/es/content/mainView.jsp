@@ -22,7 +22,7 @@
             <!-- DONUT CHART -->
             <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">Sales Report</h3>
+                <h3 class="box-title">> 남성/여성 호텔 예약 비율 (%)</h3>
                 <div class="box-tools pull-right"></div>
               </div>
               <div class="row px-3">
@@ -34,13 +34,10 @@
                 <div class="col-12 col-lg-5">
                   <ul class="chart-legend clearfix pt-30">
                     <li>
-                      <h5><i class="fa fa-circle-o text-red"></i>In-Store Sales</h5>
+                      <h5><i class="fa fa-circle-o text-red"></i> 남성</h5>
                     </li>
                     <li>
-                      <h5><i class="fa fa-circle-o text-purple"></i>Download Sales</h5>
-                    </li>
-                    <li>
-                      <h5><i class="fa fa-circle-o text-green"></i>Mail-Order Sales</h5>
+                      <h5><i class="fa fa-circle-o text-purple"></i> 여성</h5>
                     </li>
                   </ul>
                 </div>
@@ -51,7 +48,7 @@
             <!-- AREA CHART -->
             <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">Revenue Statistics</h3>
+                <h3 class="box-title">> 달별 전체 호텔 예매율 (%)</h3>
                 <div class="box-tools pull-right"><button type="button" class="btn btn-box-tool"
                     data-widget="collapse"><i class="fa fa-minus"></i></button><button type="button"
                     class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button></div>
@@ -61,34 +58,8 @@
               </div><!-- /.box-body -->
             </div><!-- /.box -->
           </div>
-          <div class="col-12">
-            <!-- LINE CHART -->
-            <div class="box">
-              <div class="box-header with-border">
-                <h3 class="box-title">Analatics</h3>
-                <div class="box-tools pull-right"><button type="button" class="btn btn-box-tool"
-                    data-widget="collapse"><i class="fa fa-minus"></i></button><button type="button"
-                    class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button></div>
-              </div>
-              <div class="box-body chart-responsive">
-                <div class="chart" id="line-chart" style="height: 300px;"></div>
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-          </div>
-          <div class="col-12">
-            <!-- BAR CHART -->
-            <div class="box">
-              <div class="box-header with-border">
-                <h3 class="box-title">Download Count</h3>
-                <div class="box-tools pull-right"><button type="button" class="btn btn-box-tool"
-                    data-widget="collapse"><i class="fa fa-minus"></i></button><button type="button"
-                    class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button></div>
-              </div>
-              <div class="box-body chart-responsive">
-                <div class="chart" id="bar-chart" style="height: 300px;"></div>
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-          </div><!-- /.col (RIGHT) -->
+         
+          
         </div><!-- /.row -->
       </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
@@ -98,6 +69,8 @@
   <!-- Morris.js charts -->
   <script src="../admin_resource/assets/vendor_components/raphael/raphael.min.js"></script>
   <script src="../admin_resource/assets/vendor_components/morris.js/morris.min.js"></script>
-  <script src="../admin_resource/js/pages/widget-morris-charts.js"></script>
+  <script type="text/javascript">
+
+  </script>
 </body>
 </html>

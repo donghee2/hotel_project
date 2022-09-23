@@ -38,4 +38,12 @@ public class MemberService {
 		return memberMapper.selectMember(email);
 	}
 
+	public int selectGenderCount(String gender) {
+		return memberMapper.selectGenderCount(gender);
+	}
+
+	public int selectMonthCount(Map<String, String> map) {
+		return memberMapper.selectMonthCount(map);
+	}
+
 }

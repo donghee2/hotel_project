@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,6 +52,35 @@ public class AdminController {
 
 	@RequestMapping("/admin.do")
 	public String main(Model model) {
+		
+		// 성별 비율 구하는 부분
+		String gender = "F";
+		int fcount = memberservice.selectGenderCount(gender);
+		gender = "M";
+		int mcount = memberservice.selectGenderCount(gender);
+		System.out.println(fcount);
+		System.out.println(mcount);
+		// 올해 달별 호텔별 예약 수
+		LocalDate now = LocalDate.now();
+		int nowMonth = now.getMonth().getValue();
+//		int[] monthcount = new int[12];
+		List<Integer> monthcount = new ArrayList<Integer>();
+		
+		for(int i=1;i<=nowMonth;i++) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("thismonth", String.valueOf(i));
+			map.put("nextmonth", String.valueOf(i+1));
+			if(map.get("thismonth").length() == 1) {
+				map.put("thismonth", "0"+ map.get("thismonth"));
+			}
+			System.out.println(map.get("thismonth"));
+			System.out.println(map.get("nextmonth"));
+			model.addAttribute("m"+ String.valueOf(i) +"count", memberservice.selectMonthCount(map));
+		}
+		
+		model.addAttribute("fcount", fcount);
+		
+		model.addAttribute("mcount", mcount);
 		model.addAttribute("title", "메인 페이지");
 		model.addAttribute("page", "mainView.jsp" );
 		
