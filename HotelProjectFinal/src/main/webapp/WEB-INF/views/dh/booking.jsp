@@ -114,7 +114,7 @@
 				<div class="col-md-8">
 					<div class="blog-details-desc">
 						<div class="blog-details-meta">
-							<img src="${booking.roomimagepath }" alt="" />
+							<img src="${booking.roomimage }" alt="" />
 							<ul>
 								<li>1박요금</li>
 								<li id="defaultprice">${booking.price }</li>
